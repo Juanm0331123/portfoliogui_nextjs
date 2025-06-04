@@ -5,12 +5,10 @@ import {
     Download,
     ExternalLink,
     Github,
-    Instagram,
     Linkedin,
     Mail,
     MapPin,
     Sparkles,
-    Twitter,
 } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -43,35 +41,33 @@ const About = () => {
     const socialLinks = [
         {
             icon: Github,
-            href: 'https://github.com',
+            href: 'https://github.com/Juanm0331123',
             label: 'GitHub',
             color: 'hover:text-[#23A8C0]',
         },
         {
             icon: Linkedin,
-            href: 'https://linkedin.com',
+            href: 'https://www.linkedin.com/in/juanmigueldev/',
             label: 'LinkedIn',
             color: 'hover:text-[#7C6AD9]',
         },
         {
-            icon: Twitter,
-            href: 'https://twitter.com',
-            label: 'Twitter',
-            color: 'hover:text-[#23A8C0]',
-        },
-        {
-            icon: Instagram,
-            href: 'https://instagram.com',
-            label: 'Instagram',
-            color: 'hover:text-[#F65ACD]',
-        },
-        {
             icon: Mail,
-            href: 'mailto:tu-email@ejemplo.com',
+            href: 'mailto:juanmiguelleon5@gmail.com',
             label: 'Email',
             color: 'hover:text-[#7C6AD9]',
         },
     ]
+
+    const handleDownloadCV = () => {
+        const link = document.createElement('a')
+        link.href = '/CV-JuanMiguel.pdf'
+        link.download = 'CV-JuanMiguel.pdf'
+        document.body.appendChild(link)
+
+        link.click()
+        document.body.removeChild(link)
+    }
 
     return (
         <section
@@ -96,15 +92,15 @@ const About = () => {
                     <div className="inline-flex items-center rounded-3xl py-3 px-6 border border-[#7C6AD9]/50 bg-[#0D0528]/50 shadow-lg mb-6">
                         <Sparkles className="text-[#A99BEA] mr-3 h-5 w-5" />
                         <span className="text-sm font-medium text-[#D1D1F0]">
-                            Conoce más sobre mí
+                            Learn more about me
                         </span>
                     </div>
                     <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-transparent">
-                        Sobre Mí
+                        About Me
                     </h2>
                     <p className="text-xl text-[#8A8AAA] max-w-2xl mx-auto">
-                        Desarrollador Full Stack apasionado por crear experiencias
-                        digitales excepcionales
+                        Full Stack Developer passionate about creating exceptional
+                        digital experiences
                     </p>
                 </div>
 
@@ -126,7 +122,7 @@ const About = () => {
                                 <div className="relative bg-gradient-to-br from-[#10102E] to-[#140634] rounded-3xl p-1 overflow-hidden">
                                     <Image
                                         src="/About-me.png"
-                                        alt="Perfil"
+                                        alt="Juan Miguel León Gómez"
                                         width={400}
                                         height={400}
                                         className="w-full h-full object-cover rounded-3xl"
@@ -146,14 +142,14 @@ const About = () => {
                             </div>
                             <div className="flex items-center space-x-3 text-[#D1D1F0]">
                                 <Calendar className="text-[#23A8C0]" size={20} />
-                                <span>3+ años de experiencia</span>
+                                <span>3+ years of experience</span>
                             </div>
                         </div>
 
                         {/* Social Links */}
                         <div className="space-y-4">
                             <h3 className="text-xl font-semibold text-[#A99BEA]">
-                                Conecta conmigo
+                                Connect with me
                             </h3>
                             <div className="flex space-x-4">
                                 {socialLinks.map((social, index) => (
@@ -172,9 +168,12 @@ const About = () => {
                         </div>
 
                         {/* Download CV Button */}
-                        <button className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium rounded-xl hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        <button
+                            onClick={handleDownloadCV}
+                            className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium rounded-xl hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                        >
                             <Download size={20} />
-                            <span>Descargar CV</span>
+                            <span>Download CV</span>
                             <ExternalLink
                                 size={16}
                                 className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -193,29 +192,37 @@ const About = () => {
                         {/* Description */}
                         <div className="space-y-6">
                             <h3 className="text-3xl font-bold text-[#A99BEA]">
-                                ¡Hola! Soy tu próximo desarrollador
+                                Hello! I&apos;m Juan Miguel León Gómez
                             </h3>
                             <div className="space-y-4 text-[#D1D1F0] leading-relaxed">
                                 <p>
-                                    Soy un desarrollador Full Stack apasionado por crear
-                                    soluciones digitales innovadoras que combinan
-                                    funcionalidad excepcional con diseños atractivos.
-                                    Con más de 3 años de experiencia, me especializo en
-                                    tecnologías modernas como React, Next.js, Node.js y
-                                    bases de datos.
+                                    I&apos;m a passionate and versatile software
+                                    developer with extensive experience in Java, Python,
+                                    JavaScript, and TypeScript. I specialize in Full
+                                    Stack web development using modern technologies like
+                                    Next.js, Express, Node.js, and TypeScript, creating
+                                    solutions for energy analysis and sustainable
+                                    consulting.
                                 </p>
                                 <p>
-                                    Mi enfoque se centra en escribir código limpio,
-                                    escalable y mantenible, siempre buscando las mejores
-                                    prácticas y las últimas tendencias en desarrollo
-                                    web. Me encanta enfrentar desafíos complejos y
-                                    convertir ideas en realidades digitales.
+                                    My approach focuses on building robust, efficient,
+                                    and easily maintainable systems by applying best
+                                    development practices, design patterns, and agile
+                                    frameworks. I have experience in microservices
+                                    architecture, REST API development, and cloud
+                                    application deployment, efficiently integrating
+                                    relational and non-relational databases (SQL,
+                                    PostgreSQL, and MongoDB) to ensure high performance
+                                    and scalability.
                                 </p>
                                 <p>
-                                    Cuando no estoy programando, disfruto aprendiendo
-                                    nuevas tecnologías, contribuyendo a proyectos open
-                                    source y compartiendo conocimientos con la comunidad
-                                    de desarrolladores.
+                                    I&apos;m committed to my work, always looking to
+                                    improve and learn through each experience. I enjoy
+                                    working in teams and facing challenges, which drives
+                                    me to be proactive and productive in every project.
+                                    My ability to adapt to new situations and my
+                                    willingness to take on challenges allow me to
+                                    provide innovative and efficient solutions.
                                 </p>
                             </div>
                         </div>

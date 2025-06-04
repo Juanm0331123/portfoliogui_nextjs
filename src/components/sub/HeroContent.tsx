@@ -19,7 +19,7 @@ const HeroContent = () => {
                 >
                     <SparklesIcon className="text-[#A99BEA] mr-[10px] h-5 w-5" />
                     <h1 className="text-[13px] font-medium text-[#D1D1F0]">
-                        Fullstack Developer Portfolio
+                        Full Stack Developer Portfolio
                     </h1>
                 </motion.div>
 
@@ -28,12 +28,12 @@ const HeroContent = () => {
                     className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
                 >
                     <span>
-                        Providing
+                        Building
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
                             {' '}
-                            the best{' '}
+                            innovative{' '}
                         </span>
-                        project exprience
+                        digital solutions
                     </span>
                 </motion.div>
 
@@ -41,14 +41,17 @@ const HeroContent = () => {
                     variants={slideInFromLeft(0.8)}
                     className="text-lg text-gray-400 my-5 max-w-[600px]"
                 >
-                    I&apos;m a Full Stack Software Engineer with experience in Website,
-                    Mobile, and Software development. Check out my projects and skills.
+                    I&apos;m a Full Stack Developer specialized in Next.js, Node.js, and
+                    TypeScript, creating web applications and digital solutions for
+                    energy analysis and sustainable consulting. Check out my projects
+                    and skills.
                 </motion.p>
                 <motion.a
                     variants={slideInFromLeft(1)}
                     className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+                    href="#about"
                 >
-                    Learn More!
+                    Learn More
                 </motion.a>
             </div>
 
@@ -58,7 +61,7 @@ const HeroContent = () => {
             >
                 <Image
                     src="/mainIconsdark.svg"
-                    alt="work icons"
+                    alt="Programming technologies"
                     height={650}
                     width={650}
                 />
