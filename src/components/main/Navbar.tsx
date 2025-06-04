@@ -70,37 +70,107 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+            className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${
                 isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
             }`}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mt-4">
-                    <div
-                        className="relative backdrop-blur-md bg-gradient-to-r from-[#10102E]/90 to-[#140634]/90 rounded-2xl border border-[#2A2A50]/50 shadow-2xl"
-                        style={{
-                            boxShadow: '0 25px 50px -12px rgba(124, 106, 217, 0.25)',
-                        }}
-                    >
-                        <div className="px-6 py-4">
-                            <div className="flex items-center justify-between">
-                                {/* Logo */}
-                                <div className="flex-shrink-0">
-                                    <Link
-                                        href="#hero"
-                                        className="text-2xl font-bold bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-transparent hover:scale-105 transition-transform duration-200"
-                                        onClick={(e) => handleNavClick(e, '#hero')}
-                                    >
-                                        JuanMiguel Dev
-                                    </Link>
-                                </div>
+            <div className="w-fit mt-3 px-1">
+                <div
+                    className="relative backdrop-blur-md bg-gradient-to-r from-[#10102E]/60 to-[#140634]/40 rounded-2xl border border-[#2A2A50]/30 shadow-2xl"
+                    style={{
+                        boxShadow: '0 20px 40px -10px rgba(124, 106, 217, 0.15)',
+                    }}
+                >
+                    <div className="px-4 py-2">
+                        <div className="flex items-center">
+                            {/* Logo */}
+                            <div className="flex-shrink-0">
+                                <Link
+                                    href="#hero"
+                                    className="text-lg font-bold bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-transparent hover:scale-105 transition-transform duration-200"
+                                    onClick={(e) => handleNavClick(e, '#hero')}
+                                >
+                                    JuanMiguel Dev
+                                </Link>
+                            </div>
 
-                                {/* Desktop Navigation */}
-                                <div className="hidden md:block">
-                                    <div className="ml-10 flex items-baseline space-x-8">
+                            {/* Desktop Navigation */}
+                            <div className="hidden md:block ml-4">
+                                <div className="flex items-baseline space-x-2">
+                                    {navItems.map((item) => {
+                                        const isActive =
+                                            activeSection === item.href.substring(1)
+
+                                        return (
+                                            <Link
+                                                key={item.name}
+                                                href={item.href}
+                                                className={`group relative px-2 py-1 transition-all duration-300 ease-in-out ${
+                                                    isActive
+                                                        ? 'text-white'
+                                                        : 'text-[#D1D1F0] hover:text-[#23A8C0]'
+                                                }`}
+                                                onClick={(e) =>
+                                                    handleNavClick(e, item.href)
+                                                }
+                                            >
+                                                <span className="relative z-10 flex items-center space-x-[2px]">
+                                                    <item.icon size={15} />
+                                                    <span className="text-sm">
+                                                        {item.name}
+                                                    </span>
+                                                </span>
+
+                                                {/* Hover effect */}
+                                                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#7C6AD9]/20 to-[#23A8C0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                                {/* Active indicator */}
+                                                <div
+                                                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] transition-all duration-300 ${
+                                                        isActive
+                                                            ? 'w-full'
+                                                            : 'w-0 group-hover:w-full'
+                                                    }`}
+                                                ></div>
+                                            </Link>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Mobile menu button */}
+                            <div className="md:hidden ml-4">
+                                <button
+                                    onClick={() =>
+                                        setIsMobileMenuOpen(!isMobileMenuOpen)
+                                    }
+                                    className="p-1.5 text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10 rounded-lg transition-colors duration-200"
+                                >
+                                    {isMobileMenuOpen ? (
+                                        <X size={20} />
+                                    ) : (
+                                        <Menu size={20} />
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile Navigation */}
+                    <AnimatePresence>
+                        {isMobileMenuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="md:hidden overflow-hidden"
+                            >
+                                <div className="px-5 py-3 border-t border-[#2A2A50]/30 bg-gradient-to-b from-transparent to-[#0A0A20]/40">
+                                    <div className="space-y-1">
                                         {navItems.map((item) => {
                                             const isActive =
                                                 activeSection === item.href.substring(1)
@@ -109,119 +179,25 @@ const Navbar = () => {
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className={`group relative px-3 py-2 transition-all duration-300 ease-in-out ${
+                                                    className={`group flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
                                                         isActive
-                                                            ? 'text-white'
-                                                            : 'text-[#D1D1F0] hover:text-[#23A8C0]'
+                                                            ? 'text-white bg-[#7C6AD9]/20'
+                                                            : 'text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10'
                                                     }`}
                                                     onClick={(e) =>
                                                         handleNavClick(e, item.href)
                                                     }
                                                 >
-                                                    <span className="relative z-10 flex items-center space-x-2">
-                                                        <item.icon size={18} />
-                                                        <span>{item.name}</span>
-                                                    </span>
-
-                                                    {/* Hover effect */}
-                                                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#7C6AD9]/20 to-[#23A8C0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                                                    {/* Active indicator */}
-                                                    <div
-                                                        className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] transition-all duration-300 ${
-                                                            isActive
-                                                                ? 'w-full'
-                                                                : 'w-0 group-hover:w-full'
-                                                        }`}
-                                                    ></div>
+                                                    <item.icon size={18} />
+                                                    <span>{item.name}</span>
                                                 </Link>
                                             )
                                         })}
                                     </div>
                                 </div>
-
-                                {/* CTA Button - Desktop */}
-                                <div className="hidden md:block">
-                                    <Link
-                                        href="#contact"
-                                        onClick={(e) => handleNavClick(e, '#contact')}
-                                        className="relative px-6 py-2.5 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium rounded-xl hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                                    >
-                                        <span className="relative z-10">Contratar</span>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-[#8B7DE0]/20 to-[#31B6CE]/20 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                                    </Link>
-                                </div>
-
-                                {/* Mobile menu button */}
-                                <div className="md:hidden">
-                                    <button
-                                        onClick={() =>
-                                            setIsMobileMenuOpen(!isMobileMenuOpen)
-                                        }
-                                        className="p-2 text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10 rounded-lg transition-colors duration-200"
-                                    >
-                                        {isMobileMenuOpen ? (
-                                            <X size={24} />
-                                        ) : (
-                                            <Menu size={24} />
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Mobile Navigation */}
-                        <AnimatePresence>
-                            {isMobileMenuOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="md:hidden overflow-hidden"
-                                >
-                                    <div className="px-6 py-4 border-t border-[#2A2A50]/50 bg-gradient-to-b from-transparent to-[#0A0A20]/50">
-                                        <div className="space-y-1">
-                                            {navItems.map((item) => {
-                                                const isActive =
-                                                    activeSection ===
-                                                    item.href.substring(1)
-
-                                                return (
-                                                    <Link
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className={`group flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                                                            isActive
-                                                                ? 'text-white bg-[#7C6AD9]/20'
-                                                                : 'text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10'
-                                                        }`}
-                                                        onClick={(e) =>
-                                                            handleNavClick(e, item.href)
-                                                        }
-                                                    >
-                                                        <item.icon size={20} />
-                                                        <span>{item.name}</span>
-                                                    </Link>
-                                                )
-                                            })}
-                                            <div className="pt-4 border-t border-[#2A2A50]/30 mt-4">
-                                                <Link
-                                                    href="#contact"
-                                                    onClick={(e) =>
-                                                        handleNavClick(e, '#contact')
-                                                    }
-                                                    className="block w-full px-4 py-3 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium rounded-lg hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300 text-center"
-                                                >
-                                                    Contratar
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </div>
         </motion.nav>
