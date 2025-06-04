@@ -1,5 +1,6 @@
+import Footer from '@/components/main/Footer'
 import Navbar from '@/components/main/Navbar'
-import SpaceBackground from '@/components/main/StarBackground'
+import StarsCanvas from '@/components/main/StarBackground'
 import { AnimatePresence } from 'framer-motion'
 import type { Metadata } from 'next'
 import { Noto_Sans_Display } from 'next/font/google'
@@ -24,9 +25,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body className={`${noto.variable} antialiased bg-[#020113] text-white`}>
-                <SpaceBackground />
+                <StarsCanvas />
                 <Navbar />
                 <AnimatePresence mode="wait">{children}</AnimatePresence>
+                <Footer />
             </body>
         </html>
     )
