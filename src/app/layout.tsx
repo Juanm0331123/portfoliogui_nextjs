@@ -1,7 +1,7 @@
 import Footer from '@/components/main/Footer'
 import Navbar from '@/components/main/Navbar'
 import StarsCanvas from '@/components/main/StarBackground'
-import { AnimatePresence } from 'framer-motion'
+import AnimationProvider from '@/components/sub/AnimationProvider'
 import type { Metadata } from 'next'
 import { Noto_Sans_Display } from 'next/font/google'
 import './globals.css'
@@ -27,7 +27,7 @@ export default function RootLayout({
             <body className={`${noto.variable} antialiased bg-[#020113] text-white`}>
                 <StarsCanvas />
                 <Navbar />
-                <AnimatePresence mode="wait">{children}</AnimatePresence>
+                <AnimationProvider>{children}</AnimationProvider>
                 <Footer />
             </body>
         </html>
