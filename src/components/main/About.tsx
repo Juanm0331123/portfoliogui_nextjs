@@ -1,15 +1,6 @@
 'use client'
 
-import {
-    Calendar,
-    Download,
-    ExternalLink,
-    Github,
-    Linkedin,
-    Mail,
-    MapPin,
-    Sparkles,
-} from 'lucide-react'
+import { Download, ExternalLink, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -115,11 +106,11 @@ const About = () => {
                         }`}
                     >
                         {/* Profile Image */}
-                        <div className="relative group">
-                            <div className="relative w-80 h-80 mx-auto lg:mx-0">
-                                {/* Gradient border */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#7C6AD9] via-[#23A8C0] to-[#F65ACD] rounded-3xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div className="relative bg-gradient-to-br from-[#10102E] to-[#140634] rounded-3xl p-1 overflow-hidden">
+                        <div className="relative group mb-12">
+                            <div className="relative w-80 h-100 mx-auto lg:mx-0">
+                                {/* Gradient border que se ajusta a la foto */}
+                                <div className="absolute -inset-1 bg-gradient-to-r from-[#7C6AD9] via-[#23A8C0] to-[#F65ACD] rounded-3xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#10102E] to-[#140634] rounded-3xl overflow-hidden">
                                     <Image
                                         src="/About-me.png"
                                         alt="Juan Miguel León Gómez"
@@ -134,20 +125,8 @@ const About = () => {
                             </div>
                         </div>
 
-                        {/* Personal Info */}
-                        <div className="space-y-4">
-                            <div className="flex items-center space-x-3 text-[#D1D1F0]">
-                                <MapPin className="text-[#23A8C0]" size={20} />
-                                <span>Santiago de Cali, Colombia</span>
-                            </div>
-                            <div className="flex items-center space-x-3 text-[#D1D1F0]">
-                                <Calendar className="text-[#23A8C0]" size={20} />
-                                <span>3+ years of experience</span>
-                            </div>
-                        </div>
-
-                        {/* Social Links */}
-                        <div className="space-y-4">
+                        {/* Social Links - movido claramente debajo de la imagen */}
+                        <div className="space-y-4 mt-8">
                             <h3 className="text-xl font-semibold text-[#A99BEA]">
                                 Connect with me
                             </h3>
