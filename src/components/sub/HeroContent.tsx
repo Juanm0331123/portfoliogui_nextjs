@@ -4,13 +4,82 @@ import { slideInFromLeft, slideInFromRight, slideInFromTop } from '@/utils/motio
 import { SparklesIcon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+
+interface TypewriterTextProps {
+    words: string[]
+}
+
+const TypewriterText: React.FC<TypewriterTextProps> = ({ words }) => {
+    const [currentWordIndex, setCurrentWordIndex] = useState<number>(0)
+    const [currentText, setCurrentText] = useState<string>('')
+    const [isDeleting, setIsDeleting] = useState<boolean>(false)
+    const [typingSpeed, setTypingSpeed] = useState<number>(150)
+    const [showCursor, setShowCursor] = useState<boolean>(true)
+
+    useEffect(() => {
+        const cursorInterval = setInterval(() => {
+            setShowCursor((prev) => !prev)
+        }, 500)
+
+        return () => clearInterval(cursorInterval)
+    }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const currentWord = words[currentWordIndex]
+
+            if (isDeleting) {
+                setCurrentText((prev) => prev.substring(0, prev.length - 1))
+                setTypingSpeed(80)
+
+                if (currentText === '') {
+                    setIsDeleting(false)
+                    setCurrentWordIndex((prev) => (prev + 1) % words.length)
+                    setTypingSpeed(150)
+                }
+            } else {
+                setCurrentText(currentWord.substring(0, currentText.length + 1))
+                setTypingSpeed(150)
+
+                if (currentText === currentWord) {
+                    setTypingSpeed(2000)
+                    setTimeout(() => {
+                        setIsDeleting(true)
+                        setTypingSpeed(80)
+                    }, 2000)
+                }
+            }
+        }, typingSpeed)
+
+        return () => clearTimeout(timer)
+    }, [currentText, isDeleting, currentWordIndex, words, typingSpeed])
+
+    return (
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 inline-flex">
+            {currentText}
+            <span className={`${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
+        </span>
+    )
+}
 
 const HeroContent = () => {
+    const typewriterWords: string[] = [
+        'innovative',
+        'efficient',
+        'scalable',
+        'responsive',
+        'modern',
+        'specialized',
+        'full-stack',
+        'adaptable',
+    ]
+
     return (
         <motion.div
             initial="hidden"
             animate="visible"
-            className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+            className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20] select-none"
         >
             <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
                 <motion.div
@@ -27,14 +96,15 @@ const HeroContent = () => {
                     variants={slideInFromLeft(0.5)}
                     className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
                 >
-                    <span>
-                        Building
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-                            {' '}
-                            innovative{' '}
-                        </span>
-                        digital solutions
-                    </span>
+                    {/* Contenedor para mantener el layout estable */}
+                    <div className="flex flex-col">
+                        <div className="flex flex-col md:flex-row md:items-center">
+                            <span>Building</span>
+                            <span className="hidden md:inline-block">&nbsp;</span>
+                            <TypewriterText words={typewriterWords} />
+                        </div>
+                        <span className="text-white">digital solutions</span>
+                    </div>
                 </motion.div>
 
                 <motion.p
