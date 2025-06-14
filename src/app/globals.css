@@ -31,3 +31,53 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* Ajustes de responsividad para el texto dinámico */
+.dynamic-text-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.dynamic-text {
+    display: inline-block;
+    font-size: clamp(1.3rem, 4vw, 2.2rem); /* Reducido de 1.5rem, 5vw, 2.5rem */
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .dynamic-text {
+        font-size: clamp(1.1rem, 3.5vw, 1.8rem); /* Reducido de 1.25rem, 4vw, 2rem */
+    }
+}
+
+@media (max-width: 480px) {
+    .dynamic-text {
+        font-size: clamp(0.9rem, 3vw, 1.3rem); /* Reducido de 1rem, 3.5vw, 1.5rem */
+    }
+}
+
+/* Estilos específicos para el título principal */
+.hero-title,
+h1.main-heading,
+.main-title {
+    /* Usa la clase que corresponda a tu título */
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+/* Reducción para tablets */
+@media (max-width: 768px) {
+    .hero-title,
+    h1.main-heading,
+    .main-title {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+    }
+}
+
+/* Reducción para móviles */
+@media (max-width: 480px) {
+    .hero-title,
+    h1.main-heading,
+    .main-title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+}
