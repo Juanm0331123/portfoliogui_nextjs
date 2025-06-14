@@ -18,13 +18,13 @@ const Projects = () => {
                     'Modern personal portfolio site built with Next.js 15, TypeScript and animated components to showcase professional skills and projects.',
                 link: 'https://juanmigueldev.vercel.app/',
             },
-            // {
-            //     src: '/Project3-card.png',
-            //     title: 'E-commerce Dashboard',
-            //     description:
-            //         'Administrative dashboard for online stores with real-time analytics, inventory management and sales reporting features.',
-            //     link: '#',
-            // },
+            {
+                src: '/Barber-card.png',
+                title: 'Barbershop Management System',
+                description:
+                    'Professional web application for barbershop management built with Next.js and Tailwind CSS, featuring appointment booking, client management, and role-based access control. (In development)',
+                link: 'https://netxjs-barbershop.vercel.app/',
+            },
         ],
         []
     )
