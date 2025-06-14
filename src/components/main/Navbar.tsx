@@ -29,9 +29,8 @@ const Navbar = () => {
 
                 if (currentScrollY < lastScrollY || currentScrollY < 10) {
                     setIsVisible(true)
-                } else {
+                } else if (!isMobileMenuOpen) {
                     setIsVisible(false)
-                    setIsMobileMenuOpen(false)
                 }
 
                 setLastScrollY(currentScrollY)
@@ -56,17 +55,28 @@ const Navbar = () => {
                 window.removeEventListener('scroll', controlNavbar)
             }
         }
-    }, [lastScrollY, navItems])
+    }, [lastScrollY, navItems, isMobileMenuOpen])
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault()
         const targetId = href.substring(1)
         const element = document.getElementById(targetId)
+
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
             setIsMobileMenuOpen(false)
+
+            setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth' })
+                setIsVisible(true)
+            }, 300)
         }
     }
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            setIsVisible(true)
+        }
+    }, [isMobileMenuOpen])
 
     return (
         <motion.nav
@@ -77,7 +87,7 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-            <div className="w-fit mt-3 px-1">
+            <div className="w-auto mx-auto mt-3 px-4">
                 <div
                     className="relative backdrop-blur-md bg-gradient-to-r from-[#10102E]/60 to-[#140634]/40 rounded-2xl border border-[#2A2A50]/30 shadow-2xl"
                     style={{
@@ -85,7 +95,7 @@ const Navbar = () => {
                     }}
                 >
                     <div className="px-4 py-2">
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-between">
                             {/* Logo */}
                             <div className="flex-shrink-0">
                                 <Link
@@ -98,7 +108,7 @@ const Navbar = () => {
                             </div>
 
                             {/* Desktop Navigation */}
-                            <div className="hidden md:block ml-4">
+                            <div className="hidden md:block ml-10">
                                 <div className="flex items-baseline space-x-2">
                                     {navItems.map((item) => {
                                         const isActive =
@@ -147,7 +157,9 @@ const Navbar = () => {
                                     onClick={() =>
                                         setIsMobileMenuOpen(!isMobileMenuOpen)
                                     }
-                                    className="p-1.5 text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10 rounded-lg transition-colors duration-200"
+                                    className="p-2 text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10 rounded-lg transition-colors duration-200"
+                                    aria-expanded={isMobileMenuOpen}
+                                    aria-label="Menú principal"
                                 >
                                     {isMobileMenuOpen ? (
                                         <X size={20} />
