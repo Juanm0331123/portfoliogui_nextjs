@@ -89,7 +89,7 @@ const Contact = () => {
                         })
                     }, 3000)
                 } else {
-                    setErrors({ message: 'Error sending message. Try again later.' })
+                    setErrors({ message: 'Error sending message. Try again later!.' })
                 }
             } catch {
                 setErrors({ message: 'Error sending message. Try again later.' })
