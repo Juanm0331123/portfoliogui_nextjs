@@ -146,7 +146,7 @@ const Services = () => {
         {
             icon: Code,
             name: 'Frontend Development',
-            tech: 'Next.js, React.js, TypeScript, Angular,',
+            tech: 'Next.js, React.js, React Native, TypeScript, Angular',
         },
         {
             icon: Server,
