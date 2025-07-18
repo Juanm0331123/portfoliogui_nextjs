@@ -62,22 +62,35 @@ const Contact = () => {
         return newErrors
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const newErrors = validateForm()
 
         if (Object.keys(newErrors).length === 0) {
-            setIsSubmitted(true)
-            setTimeout(() => {
-                setIsSubmitted(false)
-                setFormData({
-                    name: '',
-                    email: '',
-                    subject: '',
-                    type: 'inquiry',
-                    message: '',
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
                 })
-            }, 3000)
+                if (res.ok) {
+                    setIsSubmitted(true)
+                    setTimeout(() => {
+                        setIsSubmitted(false)
+                        setFormData({
+                            name: '',
+                            email: '',
+                            subject: '',
+                            type: 'inquiry',
+                            message: '',
+                        })
+                    }, 3000)
+                } else {
+                    setErrors({ message: 'Error sending message. Try again later.' })
+                }
+            } catch {
+                setErrors({ message: 'Error sending message. Try again later.' })
+            }
         } else {
             setErrors(newErrors)
         }
