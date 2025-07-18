@@ -68,11 +68,14 @@ const Contact = () => {
 
         if (Object.keys(newErrors).length === 0) {
             try {
-                const res = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                })
+                const res = await fetch(
+                    'https://juanmigueldev.vercel.app/api/contact',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData),
+                    }
+                )
                 if (res.ok) {
                     setIsSubmitted(true)
                     setTimeout(() => {
