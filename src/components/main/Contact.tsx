@@ -125,7 +125,7 @@ const Contact = () => {
                         Let&apos;s talk about your
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0]">
                             {' '}
-                            next project
+                            next project!
                         </span>
                     </h2>
 
