@@ -52,8 +52,8 @@ const About = () => {
 
     const handleDownloadCV = () => {
         const link = document.createElement('a')
-        link.href = '/CV-JuanMiguel.pdf'
-        link.download = 'CV-JuanMiguel.pdf'
+        link.href = '/Juan_Miguel_Leon_HV_2025.pdf'
+        link.download = 'Juan_Miguel_Leon_HV_2025.pdf'
         document.body.appendChild(link)
 
         link.click()
