@@ -1,90 +1,167 @@
-🟣 Colores Principales
-Color Hexadecimal Uso recomendado
-Midnight #020113 Fondo principal, header
-Royal Purple #7C6AD9 Elementos principales, CTA
-Ocean Blue #23A8C0 Acentos, enlaces
-Deep Violet #140634 Fondos secundarios
-Navy Eclipse #10102E Áreas de contenido
+```text
++----------------------------------------------------------------------+
+|   ____   ___  ____ _____ _____ ___  _     ___ ___      ____  _   _   |
+|  |  _ \ / _ \|  _ \_   _|  ___/ _ \| |   |_ _/ _ \    / ___|| | | |  |
+|  | |_) | | | | |_) || | | |_ | | | | |    | | | | |   \___ \| | | |  |
+|  |  __/| |_| |  _ < | | |  _|| |_| | |___ | | |_| |    ___) | |_| |  |
+|  |_|    \___/|_| \_\|_| |_|   \___/|_____|___\___/    |____/ \___/   |
+|                                                                      |
+|              FullStack Portfolio built for real-world impact         |
++----------------------------------------------------------------------+
+```
 
-🌈 Paleta Expandida
-Fondos
-Fondo Principal: #020113 (Midnight)
-Fondo Secundario: #0A0A20 (Slight Navy)
-Fondo de Tarjetas: #10102E (Navy Eclipse)
-Fondo Alternativo: #0D0528 (Deep Violet Shade)
-Fondo de Secciones: #0E1C3A (Dark Ocean)
-Textos
-Texto Principal: #FFFFFF (Blanco)
-Texto Secundario: #D1D1F0 (Lavender White)
-Texto Terciario: #8A8AAA (Muted Lavender)
-Texto de Énfasis: #23A8C0 (Ocean Blue)
-Texto de Cabeceras: #A99BEA (Light Purple)
-Botones y Elementos Interactivos
-Botón Primario: #7C6AD9 (Royal Purple)
-Botón Primario Hover: #8B7DE0 (Lighter Purple)
-Botón Secundario: #23A8C0 (Ocean Blue)
-Botón Secundario Hover: #31B6CE (Bright Ocean)
-Botón Desactivado: #434360 (Muted Navy)
-Acentos y Detalles
-Acento Principal: #7C6AD9 (Royal Purple)
-Acento Secundario: #23A8C0 (Ocean Blue)
-Acento Terciario: #F65ACD (Pink Magenta) - para contraste especial
-Borde Suave: #2A2A50 (Soft Navy)
-Líneas Divisorias: #1A1A40 (Dark Navy)
-Indicadores de Estado
-Éxito: #4DEEAB (Mint Green)
-Error: #FF5F7E (Soft Red)
-Advertencia: #FFBD59 (Amber)
-Info: #5DB7DE (Light Blue)
+<p align="center">
+  <b>Portfolio GUI Next.js</b><br/>
+  Professional portfolio experience with modern animations, 3D background, and production-ready contact flow.
+</p>
 
-🌟 Gradientes
-Gradientes para Textos
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js 15"/>
+  <img src="https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react" alt="React 19"/>
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 5"/>
+  <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4"/>
+  <img src="https://img.shields.io/badge/Framer%20Motion-Animations-black?style=for-the-badge&logo=framer" alt="Framer Motion"/>
+</p>
 
-Gradiente Principal:
-background: linear-gradient(90deg, #7C6AD9, #7178E2, #7178E2, #10B1D5);
--webkit-background-clip: text;
-color: transparent;
+<p align="center">
+  <a href="https://juanmigueldev.vercel.app/">Live Demo</a> |
+  <a href="#quick-start">Quick Start</a> |
+  <a href="#project-structure">Project Structure</a> |
+  <a href="#author">Author</a>
+</p>
 
-Gradiente Suave:
-background: linear-gradient(90deg, #8B7DE0, #31B6CE);
--webkit-background-clip: text;
-color: transparent;
+---
 
-Gradiente Dramático:
-background: linear-gradient(90deg, #7C6AD9, #F65ACD);
--webkit-background-clip: text;
-color: transparent;
+## About This Repository
 
-Gradientes para Fondos
+This repository contains my personal full-stack portfolio, designed to showcase services, projects, and professional experience through a high-quality, animated, and responsive interface.
 
-Gradiente de Fondo Principal:
-background: linear-gradient(135deg, #020113, #10102E);
+It is focused on:
 
-Gradiente de Fondo Energético:
-background: linear-gradient(135deg, #10102E, #140634);
+- High-impact visual presentation.
+- Clean component architecture.
+- Real contact workflow using API routes + SMTP.
+- Production deployment readiness.
 
-Gradiente de Sección Destacada:
-background: linear-gradient(135deg, #0D0528, #0E1C3A);
+## Core Highlights
 
-Gradiente Heroico:
-background: linear-gradient(135deg, #020113 0%, #140634 50%, #10102E 100%);
+- Next.js 15 with App Router architecture.
+- Advanced UI motion with Framer Motion.
+- 3D star background using React Three Fiber + Drei.
+- Project showcase with featured project, filters, and technology tags.
+- Contact form connected to an email pipeline via Nodemailer.
+- Responsive design for desktop and mobile.
 
-Gradientes para Elementos UI
+## Tech Stack
 
-Gradiente para Botones:
-background: linear-gradient(90deg, #7C6AD9, #23A8C0);
+- Framework: `Next.js 15`
+- Language: `TypeScript`
+- UI: `React 19`, `Tailwind CSS 4`
+- Motion: `Framer Motion`
+- 3D: `three`, `@react-three/fiber`, `@react-three/drei`, `maath`
+- Icons: `lucide-react`, `@heroicons/react`
+- Email backend: `Nodemailer`
 
-Gradiente para Cards Destacadas:
-background: linear-gradient(135deg, #10102E, #23A8C0);
+## Quick Start
 
-Gradiente para Bordes:
-border-image: linear-gradient(90deg, #7C6AD9, #23A8C0) 1;
+### 1. Install dependencies
 
-🖼️ Aplicación Recomendada
-Fondo del sitio: Usa #020113 o el gradiente de fondo principal
-Navegación: Fondo #10102E con texto #FFFFFF y acento #7C6AD9
-Encabezados: Texto blanco con el gradiente principal para títulos importantes
-Cards de proyectos: Fondo #10102E con bordes sutiles #2A2A50
-Botones Call-to-Action: Gradiente para botones con texto blanco
-Enlaces: #23A8C0 normal, #31B6CE en hover
-Iconos: #7C6AD9 para iconos principales, #23A8C0 para iconos secundarios
+```bash
+npm install
+```
+
+### 2. Configure environment variables (for local email endpoint)
+
+Create `.env.local`:
+
+```env
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+```
+
+### 3. Run development server
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Scripts
+
+- `npm run dev` -> Starts local development server (Turbopack).
+- `npm run build` -> Builds production bundle.
+- `npm run start` -> Starts production server.
+- `npm run lint` -> Runs ESLint checks.
+
+## Contact API
+
+Local endpoint:
+
+- `POST /api/contact`
+
+Expected JSON body:
+
+- `name`
+- `email`
+- `subject`
+- `type` (`inquiry` | `service`)
+- `message`
+
+Important:
+
+- In `src/components/main/Contact.tsx`, the form is currently calling:
+  `https://juanmigueldev.vercel.app/api/contact`
+- If you want to use local API during development, change it to:
+  `/api/contact`
+
+## Project Structure
+
+```txt
+src/
+  app/
+    api/contact/route.ts
+    globals.css
+    layout.tsx
+    page.tsx
+  components/
+    main/
+      About.tsx
+      Contact.tsx
+      Footer.tsx
+      Hero.tsx
+      Navbar.tsx
+      Projects.tsx
+      Services.tsx
+      StarBackground.tsx
+    sub/
+      AnimationProvider.tsx
+      HeroContent.tsx
+      ProjectCard.tsx
+  utils/
+    motion.ts
+public/
+```
+
+## Deployment
+
+Recommended platform: **Vercel**
+
+Steps:
+
+1. Import the repository into Vercel.
+2. Configure environment variables (`EMAIL_USER`, `EMAIL_PASS`).
+3. Deploy.
+
+## Author
+
+**Juan Miguel Leon Gomez - FullStack Developer**
+
+- Portfolio: `https://juanmigueldev.vercel.app/`
+- LinkedIn: `https://www.linkedin.com/in/juanmigueldev/`
+- GitHub: `https://github.com/Juanm0331123`
+- Email: `juanmiguelleon5@gmail.com`
+
+## License
+
+This is a personal portfolio project intended for professional showcase and reference.
