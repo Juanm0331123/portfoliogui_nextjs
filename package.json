@@ -15,7 +15,7 @@
     "framer-motion": "^12.16.0",
     "lucide-react": "^0.512.0",
     "maath": "^0.10.8",
-    "next": "15.3.3",
+    "next": "15.3.8",
     "nodemailer": "^7.0.5",
     "postcss": "^8.5.4",
     "react": "^19.0.0",
