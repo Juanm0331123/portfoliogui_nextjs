@@ -2,7 +2,7 @@
 
 import { PointMaterial, Points } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useMemo, useRef } from 'react'
 import type * as THREE from 'three'
 // @ts-expect-error - Módulo sin tipos
 import * as random from 'maath/random/dist/maath-random.esm'
@@ -12,11 +12,8 @@ interface StarBackgroundProps {
 }
 
 const StarBackground = (props: StarBackgroundProps) => {
-    // Resto del código sin cambios...
     const ref = useRef<THREE.Points>(null)
-    const [sphere, setSphere] = useState<Float32Array | null>(null)
-
-    useEffect(() => {
+    const sphere = useMemo(() => {
         const positions = random.inSphere(new Float32Array(5000), { radius: 1.2 })
 
         for (let i = 0; i < positions.length; i++) {
@@ -25,17 +22,15 @@ const StarBackground = (props: StarBackgroundProps) => {
             }
         }
 
-        setSphere(positions)
+        return positions
     }, [])
 
-    useFrame((state, delta) => {
+    useFrame((_state, delta) => {
         if (ref.current) {
             ref.current.rotation.x -= delta / 25
             ref.current.rotation.y -= delta / 30
         }
     })
-
-    if (!sphere) return null
 
     return (
         <group rotation={[0, 0, Math.PI / 4]}>

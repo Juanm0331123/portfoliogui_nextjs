@@ -72,12 +72,6 @@ const Navbar = () => {
         }
     }
 
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            setIsVisible(true)
-        }
-    }, [isMobileMenuOpen])
-
     return (
         <motion.nav
             className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${
@@ -154,9 +148,13 @@ const Navbar = () => {
                             {/* Mobile menu button */}
                             <div className="md:hidden ml-4">
                                 <button
-                                    onClick={() =>
+                                    onClick={() => {
+                                        if (!isMobileMenuOpen) {
+                                            setIsVisible(true)
+                                        }
+
                                         setIsMobileMenuOpen(!isMobileMenuOpen)
-                                    }
+                                    }}
                                     className="p-2 text-[#D1D1F0] hover:text-[#23A8C0] hover:bg-[#7C6AD9]/10 rounded-lg transition-colors duration-200"
                                     aria-expanded={isMobileMenuOpen}
                                     aria-label="Menú principal"

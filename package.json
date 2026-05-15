@@ -12,10 +12,11 @@
         "@heroicons/react": "^2.2.0",
         "@react-three/drei": "^10.1.2",
         "@react-three/fiber": "^9.1.2",
+        "eslint-plugin-react-hooks": "^7.1.1",
         "framer-motion": "^12.16.0",
         "lucide-react": "^0.512.0",
         "maath": "^0.10.8",
-        "next": "15.3.8",
+        "next": "^15.5.9",
         "nodemailer": "^7.0.5",
         "postcss": "^8.5.4",
         "react": "^19.0.0",
@@ -32,7 +33,7 @@
         "@types/react-dom": "^19",
         "@types/three": "^0.177.0",
         "eslint": "^9",
-        "eslint-config-next": "15.3.3",
+        "eslint-config-next": "^15.5.9",
         "tailwindcss": "^4.1.8",
         "typescript": "^5"
     }
