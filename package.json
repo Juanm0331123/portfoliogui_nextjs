@@ -1,39 +1,39 @@
 {
-  "name": "portfoliogui_nextjs",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@heroicons/react": "^2.2.0",
-    "@react-three/drei": "^10.1.2",
-    "@react-three/fiber": "^9.1.2",
-    "framer-motion": "^12.16.0",
-    "lucide-react": "^0.512.0",
-    "maath": "^0.10.8",
-    "next": "15.3.8",
-    "nodemailer": "^7.0.5",
-    "postcss": "^8.5.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-type-animation": "^3.2.0",
-    "three": "^0.177.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.8",
-    "@types/node": "^20",
-    "@types/nodemailer": "^6.4.17",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/three": "^0.177.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "tailwindcss": "^4.1.8",
-    "typescript": "^5"
-  }
+    "name": "portfoliogui_nextjs",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@heroicons/react": "^2.2.0",
+        "@react-three/drei": "^10.1.2",
+        "@react-three/fiber": "^9.1.2",
+        "framer-motion": "^12.16.0",
+        "lucide-react": "^0.512.0",
+        "maath": "^0.10.8",
+        "next": "15.3.8",
+        "nodemailer": "^7.0.5",
+        "postcss": "^8.5.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-type-animation": "^3.2.0",
+        "three": "^0.177.0"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@tailwindcss/postcss": "^4.1.8",
+        "@types/node": "^20",
+        "@types/nodemailer": "^6.4.17",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@types/three": "^0.177.0",
+        "eslint": "^9",
+        "eslint-config-next": "15.3.3",
+        "tailwindcss": "^4.1.8",
+        "typescript": "^5"
+    }
 }
