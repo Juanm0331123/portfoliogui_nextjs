@@ -63,7 +63,7 @@ const About = () => {
     return (
         <section
             id="about"
-            className="relative min-h-screen py-20 px-4 overflow-hidden"
+            className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
         >
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden">
@@ -74,7 +74,7 @@ const About = () => {
             <div className="relative z-10 max-w-7xl mx-auto">
                 {/* Section Header */}
                 <div
-                    className={`text-center mb-16 transition-all duration-1000 ${
+                    className={`mb-12 text-center transition-all duration-1000 sm:mb-16 ${
                         isVisible
                             ? 'opacity-100 translate-y-0'
                             : 'opacity-0 translate-y-10'
@@ -86,36 +86,36 @@ const About = () => {
                             Learn more about me
                         </span>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-transparent">
+                    <h2 className="mb-4 bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
                         About Me
                     </h2>
-                    <p className="text-xl text-[#8A8AAA] max-w-2xl mx-auto">
+                    <p className="mx-auto max-w-2xl text-lg text-[#8A8AAA] sm:text-xl">
                         Full Stack Developer passionate about creating exceptional
                         digital experiences
                     </p>
                 </div>
 
                 {/* Main Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-14">
                     {/* Left Side - Profile Info */}
                     <div
-                        className={`space-y-8 transition-all duration-1000 delay-300 ${
+                        className={`space-y-8 transition-all duration-1000 delay-300 lg:pr-4 ${
                             isVisible
                                 ? 'opacity-100 translate-x-0'
                                 : 'opacity-0 -translate-x-10'
                         }`}
                     >
                         {/* Profile Image */}
-                        <div className="relative group mb-12">
-                            <div className="relative w-80 h-100 mx-auto lg:mx-0">
+                        <div className="group relative mb-8 sm:mb-10">
+                            <div className="relative mx-auto aspect-[4/5] w-full max-w-[320px] sm:max-w-[380px] lg:mx-0 lg:max-w-[420px] xl:max-w-[460px]">
                                 {/* Gradient border que se ajusta a la foto */}
                                 <div className="absolute -inset-1 bg-gradient-to-r from-[#7C6AD9] via-[#23A8C0] to-[#F65ACD] rounded-3xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#10102E] to-[#140634] rounded-3xl overflow-hidden">
                                     <Image
                                         src="/About-me.png"
                                         alt="Juan Miguel León Gómez"
-                                        width={400}
-                                        height={400}
+                                        fill
+                                        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, (max-width: 1280px) 420px, 460px"
                                         className="w-full h-full object-cover rounded-3xl"
                                         priority
                                     />
@@ -126,11 +126,11 @@ const About = () => {
                         </div>
 
                         {/* Social Links - movido claramente debajo de la imagen */}
-                        <div className="space-y-4 mt-8">
-                            <h3 className="text-xl font-semibold text-[#A99BEA]">
+                        <div className="mt-6 space-y-4 sm:mt-8">
+                            <h3 className="text-center text-xl font-semibold text-[#A99BEA] lg:text-left">
                                 Connect with me
                             </h3>
-                            <div className="flex space-x-4">
+                            <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
                                 {socialLinks.map((social, index) => (
                                     <a
                                         key={index}
@@ -149,7 +149,7 @@ const About = () => {
                         {/* Download CV Button */}
                         <button
                             onClick={handleDownloadCV}
-                            className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium rounded-xl hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                            className="group flex w-full items-center justify-center space-x-3 rounded-xl bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] px-6 py-3 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-[#8B7DE0] hover:to-[#31B6CE] hover:shadow-xl sm:w-fit"
                         >
                             <Download size={20} />
                             <span>Download CV</span>
@@ -162,19 +162,19 @@ const About = () => {
 
                     {/* Right Side - About Content */}
                     <div
-                        className={`space-y-8 transition-all duration-1000 delay-500 ${
+                        className={`space-y-6 transition-all duration-1000 delay-500 lg:space-y-8 ${
                             isVisible
                                 ? 'opacity-100 translate-x-0'
                                 : 'opacity-0 translate-x-10'
                         }`}
                     >
                         {/* Description */}
-                        <div className="space-y-6">
-                            <h3 className="text-3xl font-bold text-[#A99BEA]">
+                        <div className="mx-auto max-w-2xl space-y-5 lg:mx-0">
+                            <h3 className="text-2xl font-bold text-[#A99BEA] sm:text-3xl">
                                 Hello! I&apos;m Juan Miguel León Gómez
                             </h3>
-                            <div className="space-y-4 text-[#D1D1F0] leading-relaxed">
-                                <p>
+                            <div className="space-y-4 text-base leading-8 text-[#D1D1F0] sm:text-lg">
+                                <p className="text-pretty">
                                     I&apos;m a passionate and versatile software
                                     developer with extensive experience in Java, Python,
                                     JavaScript, and TypeScript. I specialize in Full
@@ -183,7 +183,7 @@ const About = () => {
                                     solutions for energy analysis and sustainable
                                     consulting.
                                 </p>
-                                <p>
+                                <p className="text-pretty">
                                     My approach focuses on building robust, efficient,
                                     and easily maintainable systems by applying best
                                     development practices, design patterns, and agile
@@ -194,7 +194,7 @@ const About = () => {
                                     PostgreSQL, and MongoDB) to ensure high performance
                                     and scalability.
                                 </p>
-                                <p>
+                                <p className="text-pretty">
                                     I&apos;m committed to my work, always looking to
                                     improve and learn through each experience. I enjoy
                                     working in teams and facing challenges, which drives
