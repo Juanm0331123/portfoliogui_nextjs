@@ -27,6 +27,7 @@ interface FormErrors {
     email?: string
     subject?: string
     message?: string
+    form?: string
 }
 
 const Contact = () => {
@@ -39,6 +40,7 @@ const Contact = () => {
     })
 
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isSending, setIsSending] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState<FormErrors>({})
 
@@ -110,10 +112,11 @@ const Contact = () => {
             [name]: value,
         }))
 
-        if (errors[name as keyof FormErrors]) {
+        if (errors[name as keyof FormErrors] || errors.form) {
             setErrors((prev) => ({
                 ...prev,
                 [name]: '',
+                form: '',
             }))
         }
     }
@@ -146,18 +149,21 @@ const Contact = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (isSending) return
+
         const newErrors = validateForm()
 
         if (Object.keys(newErrors).length === 0) {
+            setIsSending(true)
+            setErrors({})
+
             try {
-                const res = await fetch(
-                    'https://juanmigueldev.vercel.app/api/contact',
-                    {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formData),
-                    },
-                )
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                })
+
                 if (res.ok) {
                     setIsSubmitted(true)
                     setTimeout(() => {
@@ -165,10 +171,16 @@ const Contact = () => {
                         resetForm()
                     }, 3000)
                 } else {
-                    setErrors({ message: 'Error sending message. Try again later!.' })
+                    setErrors({
+                        form: 'The message could not be sent right now. Please try again later.',
+                    })
                 }
             } catch {
-                setErrors({ message: 'Error sending message. Try again later.' })
+                setErrors({
+                    form: 'The message could not be sent right now. Please try again later.',
+                })
+            } finally {
+                setIsSending(false)
             }
         } else {
             setErrors(newErrors)
@@ -489,24 +501,36 @@ const Contact = () => {
                             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                                 <button
                                     type="submit"
-                                    className="button-primary group flex min-h-12 flex-1 items-center justify-center gap-3 rounded-xl px-7 py-3.5 font-semibold"
+                                    disabled={isSending}
+                                    className="button-primary group flex min-h-12 flex-1 items-center justify-center gap-3 rounded-xl px-7 py-3.5 font-semibold disabled:cursor-not-allowed disabled:opacity-65"
                                 >
                                     <Send
                                         className="transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none"
                                         size={19}
                                     />
-                                    Send Message
+                                    {isSending ? 'Sending Message' : 'Send Message'}
                                 </button>
 
                                 <button
                                     type="button"
                                     onClick={resetForm}
-                                    className="flex min-h-12 items-center justify-center gap-3 rounded-xl border border-[#2A2A50]/90 bg-[#10102E]/45 px-7 py-3.5 font-semibold text-[#D1D1F0] transition-[background-color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#7C6AD9]/70 hover:bg-[#140634]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C6AD9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020113] motion-reduce:transform-none motion-reduce:transition-none"
+                                    disabled={isSending}
+                                    className="flex min-h-12 items-center justify-center gap-3 rounded-xl border border-[#2A2A50]/90 bg-[#10102E]/45 px-7 py-3.5 font-semibold text-[#D1D1F0] transition-[background-color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#7C6AD9]/70 hover:bg-[#140634]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C6AD9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020113] disabled:cursor-not-allowed disabled:opacity-65 motion-reduce:transform-none motion-reduce:transition-none"
                                 >
                                     <RotateCcw size={18} />
                                     Clear
                                 </button>
                             </div>
+
+                            {errors.form && (
+                                <p
+                                    role="alert"
+                                    aria-live="polite"
+                                    className="rounded-xl border border-[#FF5F7E]/45 bg-[#FF5F7E]/10 px-4 py-3 text-sm leading-6 text-[#FFB3C2]"
+                                >
+                                    {errors.form}
+                                </p>
+                            )}
                         </div>
                     </form>
                 </div>
