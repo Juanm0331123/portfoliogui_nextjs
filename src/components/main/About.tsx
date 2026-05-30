@@ -141,7 +141,7 @@ const About = () => {
                             <button
                                 type="button"
                                 onClick={handleDownloadCV}
-                                className="group flex min-h-11 w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] px-6 py-3 font-medium text-white transition duration-300 hover:from-[#8B7DE0] hover:to-[#31B6CE] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#23A8C0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020113] motion-reduce:transition-none sm:w-fit"
+                                className="button-primary group flex min-h-11 w-full items-center justify-center gap-3 rounded-xl px-6 py-3 font-semibold sm:w-fit"
                             >
                                 <Download size={20} />
                                 <span>Download CV</span>

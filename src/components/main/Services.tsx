@@ -112,7 +112,7 @@ const ServiceCard: FC<ServiceCardProps> = memo(({ service }) => (
         </div>
 
         <div className="flex items-center justify-between pt-6 border-t border-[#2A2A50]/50">
-            <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#7C6AD9]/20 to-[#23A8C0]/20 hover:from-[#7C6AD9]/30 hover:to-[#23A8C0]/30 rounded-lg text-[#D1D1F0] transition-colors duration-300">
+            <button className="button-primary flex min-h-10 items-center space-x-2 rounded-lg px-4 py-2 text-sm font-semibold">
                 <span>Request</span>
                 <ArrowRight size={16} />
             </button>

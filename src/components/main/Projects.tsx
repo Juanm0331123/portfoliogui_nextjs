@@ -233,7 +233,7 @@ const Projects = () => {
                                             href={featuredProject.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-medium hover:from-[#8B7DE0] hover:to-[#31B6CE] transition-all duration-300"
+                                            className="button-primary inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-semibold"
                                         >
                                             Visit Project
                                             <ArrowUpRight size={16} />

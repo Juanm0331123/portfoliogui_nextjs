@@ -1,22 +1,76 @@
 @import 'tailwindcss';
 
 .button-primary {
-    background: linear-gradient(
-            180deg,
-            rgba(60, 8, 126, 0) 0%,
-            rgba(60, 8, 126, 0.32) 100%
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #ffffff;
+    border: 1px solid rgba(169, 155, 234, 0.42);
+    background:
+        radial-gradient(
+            circle at 18% 18%,
+            rgba(255, 255, 255, 0.28),
+            transparent 24%
         ),
-        rgba(113, 47, 255, 0.12);
-    box-shadow: inset 0 0 12px #bf97ff3d;
+        linear-gradient(135deg, #5f4de0 0%, #9b3ee8 46%, #087f9b 100%);
+    box-shadow:
+        0 14px 34px rgba(35, 168, 192, 0.16),
+        0 8px 18px rgba(124, 106, 217, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    transition:
+        transform 300ms ease,
+        border-color 300ms ease,
+        box-shadow 300ms ease,
+        filter 300ms ease;
 }
-.button-primary:hover {
+
+.button-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: linear-gradient(
-            180deg,
-            rgba(60, 8, 126, 0) 0%,
-            rgba(60, 8, 126, 0.42) 100%
-        ),
-        rgba(113, 47, 255, 0.24);
-    box-shadow: inset 0 0 12px #bf97ff70;
+        110deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 42%,
+        transparent 62%
+    );
+    transform: translateX(-130%);
+    transition: transform 600ms ease;
+}
+
+.button-primary:hover {
+    border-color: rgba(35, 168, 192, 0.72);
+    filter: brightness(1.06) saturate(1.08);
+    box-shadow:
+        0 18px 42px rgba(35, 168, 192, 0.22),
+        0 10px 24px rgba(124, 106, 217, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transform: translateY(-2px);
+}
+
+.button-primary:hover::before {
+    transform: translateX(130%);
+}
+
+.button-primary:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px #020113,
+        0 0 0 4px rgba(35, 168, 192, 0.85),
+        0 18px 42px rgba(35, 168, 192, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button-primary,
+    .button-primary::before {
+        transition: none;
+    }
+
+    .button-primary:hover {
+        transform: none;
+    }
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */

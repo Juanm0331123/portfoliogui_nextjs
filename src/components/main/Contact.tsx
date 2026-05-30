@@ -1,7 +1,18 @@
 'use client'
 
-import { CheckCircle, Mail, MessageSquare, Send, User } from 'lucide-react'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import {
+    BriefcaseBusiness,
+    CheckCircle,
+    Clock3,
+    Mail,
+    MapPin,
+    MessageSquare,
+    RotateCcw,
+    Send,
+    Sparkles,
+    User,
+} from 'lucide-react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 interface FormData {
     name: string
@@ -28,10 +39,70 @@ const Contact = () => {
     })
 
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState<FormErrors>({})
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true)
+                    observer.disconnect()
+                }
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -100px 0px' },
+        )
+
+        const section = document.getElementById('contact')
+        if (section) observer.observe(section)
+
+        return () => observer.disconnect()
+    }, [])
+
+    const contactDetails = [
+        {
+            icon: Mail,
+            label: 'Email',
+            value: 'juanmiguelleon5@gmail.com',
+        },
+        {
+            icon: MapPin,
+            label: 'Location',
+            value: 'Cali, Colombia',
+        },
+        {
+            icon: Clock3,
+            label: 'Response window',
+            value: 'Usually within 24 hours',
+        },
+    ]
+
+    const inquiryTypes = [
+        {
+            value: 'inquiry' as const,
+            label: 'General Inquiry',
+            description: 'Questions, collaborations, and professional introductions.',
+            icon: MessageSquare,
+        },
+        {
+            value: 'service' as const,
+            label: 'Service Request',
+            description: 'Project work, product builds, and technical consulting.',
+            icon: BriefcaseBusiness,
+        },
+    ]
+
+    const fieldClass = (hasError?: boolean) =>
+        `min-h-12 w-full rounded-xl border bg-[#0D0528]/80 px-4 py-3 text-[#F5F3FF] outline-none transition-[background-color,border-color,box-shadow,transform] duration-300 placeholder:text-[#8A8AAA] hover:bg-[#10102E]/90 focus:border-[#23A8C0] focus:bg-[#10102E] focus:shadow-[0_0_0_3px_rgba(35,168,192,0.16)] motion-reduce:transition-none ${
+            hasError ? 'border-[#FF5F7E]' : 'border-[#2A2A50]/80'
+        }`
+
+    const fadeInClass = isVisible
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 translate-y-8'
+
     const handleInputChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         const { name, value } = e.target
         setFormData((prev) => ({
@@ -62,6 +133,17 @@ const Contact = () => {
         return newErrors
     }
 
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            type: 'inquiry',
+            message: '',
+        })
+        setErrors({})
+    }
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const newErrors = validateForm()
@@ -74,19 +156,13 @@ const Contact = () => {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formData),
-                    }
+                    },
                 )
                 if (res.ok) {
                     setIsSubmitted(true)
                     setTimeout(() => {
                         setIsSubmitted(false)
-                        setFormData({
-                            name: '',
-                            email: '',
-                            subject: '',
-                            type: 'inquiry',
-                            message: '',
-                        })
+                        resetForm()
                     }, 3000)
                 } else {
                     setErrors({ message: 'Error sending message. Try again later!.' })
@@ -101,21 +177,29 @@ const Contact = () => {
 
     if (isSubmitted) {
         return (
-            <section className="min-h-screen flex items-center justify-center px-4 py-16">
-                <div className="max-w-md w-full text-center">
-                    <div className="bg-gradient-to-br from-[#10102E]/90 to-[#0D0528]/90 rounded-3xl p-8 border border-[#2A2A50] shadow-2xl">
-                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-[#4DEEAB] to-[#23A8C0] flex items-center justify-center">
-                            <CheckCircle className="w-10 h-10 text-white" />
+            <section
+                className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20 sm:px-6"
+                id="contact"
+            >
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                    <div className="absolute left-1/4 top-1/3 h-72 w-72 rounded-full bg-[#7C6AD9]/10 blur-3xl"></div>
+                    <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-[#23A8C0]/10 blur-3xl"></div>
+                </div>
+
+                <div className="relative z-10 w-full max-w-md text-center">
+                    <div className="rounded-2xl border border-[#2A2A50]/80 bg-gradient-to-br from-[#10102E]/95 to-[#0D0528]/95 p-8">
+                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#4DEEAB] to-[#23A8C0]">
+                            <CheckCircle className="h-8 w-8 text-[#020113]" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                            Message Sent!
+                        <h3 className="mb-3 text-2xl font-bold text-[#F5F3FF]">
+                            Message sent
                         </h3>
-                        <p className="text-[#D1D1F0] mb-6">
-                            Thank you for contacting us. We will respond as soon as
-                            possible.
+                        <p className="mb-7 text-[#D1D1F0]">
+                            Thank you for reaching out. I will review your message and
+                            respond as soon as possible.
                         </p>
-                        <div className="w-full h-2 bg-[#2A2A50] rounded-full overflow-hidden">
-                            <div className="h-full bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] rounded-full animate-pulse"></div>
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#2A2A50]">
+                            <div className="h-full rounded-full bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] motion-safe:animate-pulse"></div>
                         </div>
                     </div>
                 </div>
@@ -125,221 +209,307 @@ const Contact = () => {
 
     return (
         <section
-            className="min-h-screen flex items-center justify-center px-4 py-16"
+            className="relative overflow-hidden px-4 py-20 sm:px-6 lg:py-24"
             id="contact"
         >
-            <div className="max-w-4xl w-full">
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center rounded-3xl py-2 px-4 border border-[#7C6AD9] bg-[#0D0528]/50 shadow-sm mb-6">
-                        <Mail className="text-[#A99BEA] mr-2 h-5 w-5" />
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute left-[-8rem] top-1/4 h-96 w-96 rounded-full bg-[#7C6AD9]/10 blur-3xl"></div>
+                <div className="absolute bottom-1/4 right-[-6rem] h-96 w-96 rounded-full bg-[#23A8C0]/10 blur-3xl"></div>
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-7xl">
+                <div
+                    className={`mx-auto mb-12 max-w-3xl text-center transition-all duration-700 motion-reduce:transform-none motion-reduce:transition-none ${fadeInClass}`}
+                >
+                    <div className="mb-6 inline-flex items-center rounded-full border border-[#7C6AD9]/50 bg-[#0D0528]/60 px-5 py-2.5">
+                        <Sparkles className="mr-3 h-5 w-5 text-[#A99BEA]" />
                         <span className="text-sm font-medium text-[#D1D1F0]">
                             Contact Us
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Let&apos;s talk about your
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0]">
-                            {' '}
-                            next project!
-                        </span>
+                    <h2 className="mb-5 text-balance text-4xl font-bold text-[#F5F3FF] sm:text-5xl md:text-6xl">
+                        Let&apos;s discuss the right next step
                     </h2>
 
-                    <p className="text-lg text-[#8A8AAA] max-w-2xl mx-auto">
-                        Do you have an amazing idea? We&apos;re here to help you make it
-                        a reality. Tell us about your project and let&apos;s begin this
-                        journey together.
+                    <p className="mx-auto max-w-2xl text-lg leading-8 text-[#8A8AAA] sm:text-xl">
+                        Share the context, goals, and constraints. I will use that to
+                        understand where I can create value for your project.
                     </p>
                 </div>
 
-                <form
-                    onSubmit={handleSubmit}
-                    className="bg-transparent rounded-3xl p-8 md:p-12 border border-[#2A2A50] shadow-2xl"
-                >
-                    <div className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Name */}
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.86fr_1.14fr] xl:gap-8">
+                    <aside
+                        className={`relative overflow-hidden rounded-2xl border border-[#2A2A50]/80 bg-gradient-to-br from-[#10102E]/92 to-[#140634]/92 p-6 transition-all delay-100 duration-700 motion-reduce:transform-none motion-reduce:transition-none sm:p-8 ${fadeInClass}`}
+                    >
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#23A8C0]/70 to-transparent"></div>
+
+                        <div className="mb-10">
+                            <p className="mb-3 text-sm font-medium text-[#A99BEA]">
+                                Professional contact
+                            </p>
+                            <h3 className="mb-4 text-2xl font-bold leading-tight text-[#F5F3FF] sm:text-3xl">
+                                Clear communication before clean execution.
+                            </h3>
+                            <p className="leading-8 text-[#D1D1F0]">
+                                I work best when the conversation starts with the
+                                problem, expected outcome, and technical context. Use
+                                this form to open that discussion.
+                            </p>
+                        </div>
+
+                        <div className="space-y-4">
+                            {contactDetails.map((item) => (
+                                <div
+                                    key={item.label}
+                                    className="flex items-start gap-4 rounded-xl border border-[#2A2A50]/60 bg-[#0D0528]/55 p-4"
+                                >
+                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#7C6AD9]/22 to-[#23A8C0]/22">
+                                        <item.icon
+                                            className="text-[#A99BEA]"
+                                            size={20}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-[#8A8AAA]">
+                                            {item.label}
+                                        </p>
+                                        <p className="break-words font-medium text-[#D1D1F0]">
+                                            {item.value}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 rounded-xl border border-[#23A8C0]/30 bg-[#23A8C0]/8 p-4">
+                            <p className="text-sm leading-6 text-[#D1D1F0]">
+                                Best fit: web platforms, portfolio systems, dashboards,
+                                API integrations, and technical product builds.
+                            </p>
+                        </div>
+                    </aside>
+
+                    <form
+                        onSubmit={handleSubmit}
+                        className={`relative overflow-hidden rounded-2xl border border-[#2A2A50]/80 bg-[#0D0528]/72 p-5 transition-all delay-200 duration-700 motion-reduce:transform-none motion-reduce:transition-none sm:p-6 lg:p-8 ${fadeInClass}`}
+                    >
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#7C6AD9]/70 to-transparent"></div>
+
+                        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <p className="mb-2 text-sm font-medium text-[#A99BEA]">
+                                    Project details
+                                </p>
+                                <h3 className="text-2xl font-bold text-[#F5F3FF]">
+                                    Send a message
+                                </h3>
+                            </div>
+                            <p className="text-sm text-[#8A8AAA]">
+                                All fields are required
+                            </p>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <label
+                                        htmlFor="name"
+                                        className="flex items-center text-sm font-medium text-[#D1D1F0]"
+                                    >
+                                        <User className="mr-2 h-4 w-4 text-[#7C6AD9]" />
+                                        Full Name
+                                    </label>
+                                    <input
+                                        aria-describedby={
+                                            errors.name ? 'name-error' : undefined
+                                        }
+                                        aria-invalid={Boolean(errors.name)}
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        className={fieldClass(Boolean(errors.name))}
+                                        placeholder="Juan Miguel Leon"
+                                    />
+                                    {errors.name && (
+                                        <p
+                                            id="name-error"
+                                            className="text-sm text-[#FF5F7E]"
+                                        >
+                                            {errors.name}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label
+                                        htmlFor="email"
+                                        className="flex items-center text-sm font-medium text-[#D1D1F0]"
+                                    >
+                                        <Mail className="mr-2 h-4 w-4 text-[#7C6AD9]" />
+                                        Email
+                                    </label>
+                                    <input
+                                        aria-describedby={
+                                            errors.email ? 'email-error' : undefined
+                                        }
+                                        aria-invalid={Boolean(errors.email)}
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        className={fieldClass(Boolean(errors.email))}
+                                        placeholder="you@company.com"
+                                    />
+                                    {errors.email && (
+                                        <p
+                                            id="email-error"
+                                            className="text-sm text-[#FF5F7E]"
+                                        >
+                                            {errors.email}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
                             <div className="space-y-2">
                                 <label
-                                    htmlFor="name"
-                                    className="flex items-center text-[#D1D1F0] font-medium"
+                                    htmlFor="subject"
+                                    className="flex items-center text-sm font-medium text-[#D1D1F0]"
                                 >
-                                    <User className="w-4 h-4 mr-2 text-[#7C6AD9]" />
-                                    Full Name
+                                    <MessageSquare className="mr-2 h-4 w-4 text-[#7C6AD9]" />
+                                    Subject
                                 </label>
                                 <input
+                                    aria-describedby={
+                                        errors.subject ? 'subject-error' : undefined
+                                    }
+                                    aria-invalid={Boolean(errors.subject)}
                                     type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 bg-[#140634] border ${
-                                        errors.name
-                                            ? 'border-[#FF5F7E]'
-                                            : 'border-[#2A2A50]'
-                                    } rounded-xl text-white placeholder-[#8A8AAA] focus:outline-none focus:border-[#7C6AD9] focus:ring-2 focus:ring-[#7C6AD9]/20 transition-all duration-300`}
-                                    placeholder="Your full name"
+                                    className={fieldClass(Boolean(errors.subject))}
+                                    placeholder="What would you like to build or discuss?"
                                 />
-                                {errors.name && (
-                                    <p className="text-[#FF5F7E] text-sm">
-                                        {errors.name}
+                                {errors.subject && (
+                                    <p
+                                        id="subject-error"
+                                        className="text-sm text-[#FF5F7E]"
+                                    >
+                                        {errors.subject}
                                     </p>
                                 )}
                             </div>
 
-                            {/* Email */}
+                            <fieldset className="space-y-3">
+                                <legend className="text-sm font-medium text-[#D1D1F0]">
+                                    Inquiry Type
+                                </legend>
+                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                    {inquiryTypes.map((option) => {
+                                        const Icon = option.icon
+
+                                        return (
+                                            <label
+                                                key={option.value}
+                                                htmlFor={`type-${option.value}`}
+                                                className="group relative min-h-[116px] cursor-pointer rounded-xl border border-[#2A2A50]/80 bg-[#10102E]/52 p-4 transition-[background-color,border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#7C6AD9]/70 hover:bg-[#10102E]/82 motion-reduce:transform-none motion-reduce:transition-none"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id={`type-${option.value}`}
+                                                    name="type"
+                                                    value={option.value}
+                                                    checked={
+                                                        formData.type === option.value
+                                                    }
+                                                    onChange={handleInputChange}
+                                                    className="peer sr-only"
+                                                />
+                                                <span className="absolute inset-0 rounded-xl border border-transparent transition duration-300 peer-checked:border-[#23A8C0] peer-checked:shadow-[0_0_0_3px_rgba(35,168,192,0.14)] motion-reduce:transition-none"></span>
+                                                <span className="relative flex items-start gap-3">
+                                                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#7C6AD9]/22 to-[#23A8C0]/22">
+                                                        <Icon
+                                                            className="text-[#A99BEA]"
+                                                            size={19}
+                                                        />
+                                                    </span>
+                                                    <span>
+                                                        <span className="block font-semibold text-[#F5F3FF]">
+                                                            {option.label}
+                                                        </span>
+                                                        <span className="mt-1 block text-sm leading-6 text-[#8A8AAA]">
+                                                            {option.description}
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        )
+                                    })}
+                                </div>
+                            </fieldset>
+
                             <div className="space-y-2">
                                 <label
-                                    htmlFor="email"
-                                    className="flex items-center text-[#D1D1F0] font-medium"
+                                    htmlFor="message"
+                                    className="text-sm font-medium text-[#D1D1F0]"
                                 >
-                                    <Mail className="w-4 h-4 mr-2 text-[#7C6AD9]" />
-                                    Email
+                                    Message
                                 </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
+                                <textarea
+                                    aria-describedby={
+                                        errors.message ? 'message-error' : undefined
+                                    }
+                                    aria-invalid={Boolean(errors.message)}
+                                    id="message"
+                                    name="message"
+                                    rows={6}
+                                    value={formData.message}
                                     onChange={handleInputChange}
-                                    className={`w-full px-4 py-3 bg-[#140634] border ${
-                                        errors.email
-                                            ? 'border-[#FF5F7E]'
-                                            : 'border-[#2A2A50]'
-                                    } rounded-xl text-white placeholder-[#8A8AAA] focus:outline-none focus:border-[#7C6AD9] focus:ring-2 focus:ring-[#7C6AD9]/20 transition-all duration-300`}
-                                    placeholder="your@email.com"
+                                    className={`${fieldClass(
+                                        Boolean(errors.message),
+                                    )} min-h-40 resize-none leading-7`}
+                                    placeholder="Tell me about the goal, timeline, technical context, and what a successful result looks like."
                                 />
-                                {errors.email && (
-                                    <p className="text-[#FF5F7E] text-sm">
-                                        {errors.email}
+                                {errors.message && (
+                                    <p
+                                        id="message-error"
+                                        className="text-sm text-[#FF5F7E]"
+                                    >
+                                        {errors.message}
                                     </p>
                                 )}
                             </div>
-                        </div>
 
-                        {/* Subject */}
-                        <div className="space-y-2">
-                            <label
-                                htmlFor="subject"
-                                className="flex items-center text-[#D1D1F0] font-medium"
-                            >
-                                <MessageSquare className="w-4 h-4 mr-2 text-[#7C6AD9]" />
-                                Subject
-                            </label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                value={formData.subject}
-                                onChange={handleInputChange}
-                                className={`w-full px-4 py-3 bg-[#140634] border ${
-                                    errors.subject
-                                        ? 'border-[#FF5F7E]'
-                                        : 'border-[#2A2A50]'
-                                } rounded-xl text-white placeholder-[#8A8AAA] focus:outline-none focus:border-[#7C6AD9] focus:ring-2 focus:ring-[#7C6AD9]/20 transition-all duration-300`}
-                                placeholder="What would you like to discuss?"
-                            />
-                            {errors.subject && (
-                                <p className="text-[#FF5F7E] text-sm">
-                                    {errors.subject}
-                                </p>
-                            )}
-                        </div>
+                            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                                <button
+                                    type="submit"
+                                    className="button-primary group flex min-h-12 flex-1 items-center justify-center gap-3 rounded-xl px-7 py-3.5 font-semibold"
+                                >
+                                    <Send
+                                        className="transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                                        size={19}
+                                    />
+                                    Send Message
+                                </button>
 
-                        {/* Inquiry Type */}
-                        <div className="space-y-2">
-                            <label
-                                htmlFor="type"
-                                className="text-[#D1D1F0] font-medium"
-                            >
-                                Inquiry Type
-                            </label>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <label className="flex items-center space-x-3 cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name="type"
-                                        value="inquiry"
-                                        checked={formData.type === 'inquiry'}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4 text-[#7C6AD9] bg-[#140634] border-[#2A2A50] focus:ring-[#7C6AD9] focus:ring-2"
-                                    />
-                                    <span className="text-[#D1D1F0]">
-                                        General Inquiry
-                                    </span>
-                                </label>
-                                <label className="flex items-center space-x-3 cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name="type"
-                                        value="service"
-                                        checked={formData.type === 'service'}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4 text-[#7C6AD9] bg-[#140634] border-[#2A2A50] focus:ring-[#7C6AD9] focus:ring-2"
-                                    />
-                                    <span className="text-[#D1D1F0]">
-                                        Service Request
-                                    </span>
-                                </label>
+                                <button
+                                    type="button"
+                                    onClick={resetForm}
+                                    className="flex min-h-12 items-center justify-center gap-3 rounded-xl border border-[#2A2A50]/90 bg-[#10102E]/45 px-7 py-3.5 font-semibold text-[#D1D1F0] transition-[background-color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#7C6AD9]/70 hover:bg-[#140634]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C6AD9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020113] motion-reduce:transform-none motion-reduce:transition-none"
+                                >
+                                    <RotateCcw size={18} />
+                                    Clear
+                                </button>
                             </div>
                         </div>
-
-                        {/* Message */}
-                        <div className="space-y-2">
-                            <label
-                                htmlFor="message"
-                                className="text-[#D1D1F0] font-medium"
-                            >
-                                Message
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows={6}
-                                value={formData.message}
-                                onChange={handleInputChange}
-                                className={`w-full px-4 py-3 bg-[#140634] border ${
-                                    errors.message
-                                        ? 'border-[#FF5F7E]'
-                                        : 'border-[#2A2A50]'
-                                } rounded-xl text-white placeholder-[#8A8AAA] focus:outline-none focus:border-[#7C6AD9] focus:ring-2 focus:ring-[#7C6AD9]/20 transition-all duration-300 resize-none`}
-                                placeholder="Tell us more details about your project or inquiry..."
-                            />
-                            {errors.message && (
-                                <p className="text-[#FF5F7E] text-sm">
-                                    {errors.message}
-                                </p>
-                            )}
-                        </div>
-
-                        {/* Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                            <button
-                                type="submit"
-                                className="flex-1 flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] text-white font-semibold rounded-xl hover:from-[#8B7DE0] hover:to-[#31B6CE] focus:outline-none focus:ring-2 focus:ring-[#7C6AD9]/50 transform hover:scale-[1.02] transition-all duration-300 shadow-lg"
-                            >
-                                <Send className="w-5 h-5 mr-2" />
-                                Send Message
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    setFormData({
-                                        name: '',
-                                        email: '',
-                                        subject: '',
-                                        type: 'inquiry',
-                                        message: '',
-                                    })
-                                }
-                                className="flex-1 sm:flex-initial px-8 py-4 border border-[#2A2A50] text-[#D1D1F0] font-semibold rounded-xl hover:bg-[#140634] focus:outline-none focus:ring-2 focus:ring-[#2A2A50] transition-all duration-300"
-                            >
-                                Clear
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </section>
     )
