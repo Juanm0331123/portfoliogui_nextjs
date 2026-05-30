@@ -56,3 +56,8 @@ next-env.d.ts
 # editors
 .idea/
 .vscode/
+
+# local agent tooling artifacts
+.impeccable/live/sessions/
+.impeccable/live/*.log
+.impeccable/live/.tmp/

@@ -14,7 +14,7 @@ const About = () => {
                     setIsVisible(true)
                 }
             },
-            { threshold: 0.1 }
+            { threshold: 0.1 },
         )
 
         const section = document.getElementById('about')
@@ -50,10 +50,16 @@ const About = () => {
         },
     ]
 
+    const profileHighlights = [
+        'Full Stack Development',
+        'Informatics Engineering',
+        'Energy Analysis Solutions',
+    ]
+
     const handleDownloadCV = () => {
         const link = document.createElement('a')
-        link.href = '/Juan_Miguel_Leon_HV_2025.pdf'
-        link.download = 'Juan_Miguel_Leon_HV_2025.pdf'
+        link.href = '/Juan_Miguel_Leon_HV_2026.pdf'
+        link.download = 'Juan_Miguel_Leon_HV_2026.pdf'
         document.body.appendChild(link)
 
         link.click()
@@ -65,115 +71,100 @@ const About = () => {
             id="about"
             className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
         >
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7C6AD9]/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#23A8C0]/10 rounded-full blur-3xl"></div>
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-[#7C6AD9]/10 blur-3xl"></div>
+                <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-[#23A8C0]/10 blur-3xl"></div>
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto">
-                {/* Section Header */}
+            <div className="relative z-10 mx-auto max-w-7xl">
                 <div
-                    className={`mb-12 text-center transition-all duration-1000 sm:mb-16 ${
+                    className={`mx-auto mb-12 max-w-3xl text-center transition-all duration-700 motion-reduce:transform-none motion-reduce:transition-none sm:mb-14 ${
                         isVisible
                             ? 'opacity-100 translate-y-0'
                             : 'opacity-0 translate-y-10'
                     }`}
                 >
-                    <div className="inline-flex items-center rounded-3xl py-3 px-6 border border-[#7C6AD9]/50 bg-[#0D0528]/50 shadow-lg mb-6">
-                        <Sparkles className="text-[#A99BEA] mr-3 h-5 w-5" />
+                    <div className="mb-6 inline-flex items-center rounded-full border border-[#7C6AD9]/50 bg-[#0D0528]/60 px-5 py-2.5">
+                        <Sparkles className="mr-3 h-5 w-5 text-[#A99BEA]" />
                         <span className="text-sm font-medium text-[#D1D1F0]">
                             Learn more about me
                         </span>
                     </div>
-                    <h2 className="mb-4 bg-gradient-to-r from-[#7C6AD9] via-[#7178E2] to-[#10B1D5] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
+                    <h2 className="mb-4 text-balance text-4xl font-bold text-[#D1D1F0] sm:text-5xl md:text-6xl">
                         About Me
                     </h2>
                     <p className="mx-auto max-w-2xl text-lg text-[#8A8AAA] sm:text-xl">
-                        Full Stack Developer passionate about creating exceptional
-                        digital experiences
+                        Full Stack Developer focused on clear architecture, responsive
+                        interfaces, and practical digital products.
                     </p>
                 </div>
 
-                {/* Main Content */}
-                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-14">
-                    {/* Left Side - Profile Info */}
+                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(280px,0.82fr)_minmax(0,1.18fr)] lg:gap-12 xl:gap-16">
                     <div
-                        className={`space-y-8 transition-all duration-1000 delay-300 lg:pr-4 ${
+                        className={`mx-auto flex w-full max-w-[360px] flex-col items-center transition-all delay-150 duration-700 motion-reduce:transform-none motion-reduce:transition-none lg:mx-0 lg:max-w-[340px] xl:max-w-[360px] ${
                             isVisible
                                 ? 'opacity-100 translate-x-0'
                                 : 'opacity-0 -translate-x-10'
                         }`}
                     >
-                        {/* Profile Image */}
-                        <div className="group relative mb-8 sm:mb-10">
-                            <div className="relative mx-auto aspect-[4/5] w-full max-w-[320px] sm:max-w-[380px] lg:mx-0 lg:max-w-[420px] xl:max-w-[460px]">
-                                {/* Gradient border que se ajusta a la foto */}
-                                <div className="absolute -inset-1 bg-gradient-to-r from-[#7C6AD9] via-[#23A8C0] to-[#F65ACD] rounded-3xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#10102E] to-[#140634] rounded-3xl overflow-hidden">
-                                    <Image
-                                        src="/About-me.png"
-                                        alt="Juan Miguel León Gómez"
-                                        fill
-                                        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, (max-width: 1280px) 420px, 460px"
-                                        className="w-full h-full object-cover rounded-3xl"
-                                        priority
-                                    />
-                                    {/* Overlay gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#020113]/20 to-transparent rounded-3xl"></div>
-                                </div>
+                        <div className="group relative w-full">
+                            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-[#7C6AD9] via-[#23A8C0] to-[#F65ACD] opacity-80 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"></div>
+                            <div className="relative aspect-[572/892] overflow-hidden rounded-2xl border border-[#2A2A50]/70 bg-gradient-to-br from-[#10102E] to-[#140634]">
+                                <Image
+                                    src="/About-me.png"
+                                    alt="Portrait of Juan Miguel Leon Gomez"
+                                    fill
+                                    sizes="(max-width: 640px) 82vw, (max-width: 1024px) 360px, 360px"
+                                    className="h-full w-full object-cover"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#020113]/25 via-transparent to-transparent"></div>
                             </div>
                         </div>
 
-                        {/* Social Links - movido claramente debajo de la imagen */}
-                        <div className="mt-6 space-y-4 sm:mt-8">
-                            <h3 className="text-center text-xl font-semibold text-[#A99BEA] lg:text-left">
-                                Connect with me
-                            </h3>
-                            <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+                        <div className="mt-6 flex w-full flex-col items-center gap-5">
+                            <div className="flex flex-wrap justify-center gap-3">
                                 {socialLinks.map((social, index) => (
                                     <a
                                         key={index}
                                         href={social.href}
-                                        className={`p-3 bg-[#10102E]/50 hover:bg-[#140634]/80 border border-[#2A2A50]/50 rounded-xl text-[#8A8AAA] ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg group`}
+                                        className={`flex h-11 w-11 items-center justify-center rounded-xl border border-[#2A2A50]/70 bg-[#10102E]/70 text-[#D1D1F0] transition duration-300 hover:-translate-y-0.5 hover:border-[#7C6AD9]/70 hover:bg-[#140634]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#23A8C0] motion-reduce:transform-none motion-reduce:transition-none ${social.color}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={social.label}
                                     >
-                                        <social.icon size={24} />
+                                        <social.icon size={21} />
                                     </a>
                                 ))}
                             </div>
-                        </div>
 
-                        {/* Download CV Button */}
-                        <button
-                            onClick={handleDownloadCV}
-                            className="group flex w-full items-center justify-center space-x-3 rounded-xl bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] px-6 py-3 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-[#8B7DE0] hover:to-[#31B6CE] hover:shadow-xl sm:w-fit"
-                        >
-                            <Download size={20} />
-                            <span>Download CV</span>
-                            <ExternalLink
-                                size={16}
-                                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            />
-                        </button>
+                            <button
+                                type="button"
+                                onClick={handleDownloadCV}
+                                className="group flex min-h-11 w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#7C6AD9] to-[#23A8C0] px-6 py-3 font-medium text-white transition duration-300 hover:from-[#8B7DE0] hover:to-[#31B6CE] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#23A8C0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020113] motion-reduce:transition-none sm:w-fit"
+                            >
+                                <Download size={20} />
+                                <span>Download CV</span>
+                                <ExternalLink
+                                    size={16}
+                                    className="opacity-80 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"
+                                />
+                            </button>
+                        </div>
                     </div>
 
-                    {/* Right Side - About Content */}
                     <div
-                        className={`space-y-6 transition-all duration-1000 delay-500 lg:space-y-8 ${
+                        className={`mx-auto flex max-w-3xl flex-col justify-center transition-all delay-300 duration-700 motion-reduce:transform-none motion-reduce:transition-none lg:mx-0 ${
                             isVisible
                                 ? 'opacity-100 translate-x-0'
                                 : 'opacity-0 translate-x-10'
                         }`}
                     >
-                        {/* Description */}
-                        <div className="mx-auto max-w-2xl space-y-5 lg:mx-0">
-                            <h3 className="text-2xl font-bold text-[#A99BEA] sm:text-3xl">
-                                Hello! I&apos;m Juan Miguel León Gómez
+                        <div className="space-y-6 text-center lg:text-left">
+                            <h3 className="text-balance text-2xl font-bold leading-tight text-[#A99BEA] sm:text-3xl">
+                                Hello, I&apos;m Juan Miguel Leon Gomez
                             </h3>
-                            <div className="space-y-4 text-base leading-8 text-[#D1D1F0] sm:text-lg">
+                            <div className="space-y-5 text-base leading-8 text-[#D1D1F0] sm:text-lg">
                                 <p className="text-pretty">
                                     I&apos;m a passionate and versatile software
                                     developer with extensive experience in Java, Python,
@@ -195,15 +186,23 @@ const About = () => {
                                     and scalability.
                                 </p>
                                 <p className="text-pretty">
-                                    I&apos;m committed to my work, always looking to
-                                    improve and learn through each experience. I enjoy
-                                    working in teams and facing challenges, which drives
-                                    me to be proactive and productive in every project.
-                                    My ability to adapt to new situations and my
-                                    willingness to take on challenges allow me to
-                                    provide innovative and efficient solutions.
+                                    I&apos;m committed to improving through each
+                                    experience, working well with teams, and adapting to
+                                    new challenges. That mindset helps me stay proactive
+                                    and deliver efficient solutions in every project.
                                 </p>
                             </div>
+
+                            <ul className="flex flex-wrap justify-center gap-3 pt-1 lg:justify-start">
+                                {profileHighlights.map((highlight) => (
+                                    <li
+                                        key={highlight}
+                                        className="rounded-full border border-[#2A2A50]/70 bg-[#10102E]/60 px-4 py-2 text-sm font-medium text-[#D1D1F0]"
+                                    >
+                                        {highlight}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>
