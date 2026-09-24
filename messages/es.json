@@ -1,0 +1,173 @@
+{
+    "Metadata": {
+        "title": "ImMiguel Dev — Ingeniería full stack",
+        "description": "Juan Miguel León Gómez, Ingeniero Informático y desarrollador full stack en Cali, Colombia. Aplicaciones web con React, Next.js, Node.js, Python, PostgreSQL, Docker e inteligencia artificial."
+    },
+    "Loader": {
+        "status": "Cargando"
+    },
+    "Navbar": {
+        "home": "Ir al inicio",
+        "primary": "Secciones",
+        "about": "Sobre mí",
+        "skills": "Stack",
+        "projects": "Proyectos",
+        "experience": "Experiencia",
+        "contact": "Contacto",
+        "cta": "Contactar",
+        "openMenu": "Abrir menú",
+        "closeMenu": "Cerrar menú"
+    },
+    "LocaleSwitcher": {
+        "label": "Idioma",
+        "es": "ES",
+        "en": "EN",
+        "switchTo": "Cambiar a {language}",
+        "names": {
+            "es": "español",
+            "en": "inglés"
+        }
+    },
+    "Hero": {
+        "badge": "Ingeniero Informático · Desarrollador Full Stack",
+        "subtitle": "Desarrollo aplicaciones web completas, desde la interfaz y la API hasta la base de datos, automatización, despliegue e integración de inteligencia artificial.",
+        "ctaWork": "Ver proyectos",
+        "ctaCv": "Descargar CV",
+        "scroll": "Desliza"
+    },
+    "About": {
+        "headline": "Ingeniero Informático enfocado en desarrollo full stack.",
+        "layers": "Soy Ingeniero Informático de la Universidad Autónoma de Occidente y desarrollador full stack. Trabajo con React, Next.js y TypeScript en frontend; Node.js, NestJS, Express y Python en backend; y PostgreSQL, MongoDB y MySQL para persistencia de datos. También utilizo Docker y servicios cloud para desplegar aplicaciones en producción.",
+        "effect": "Actualmente curso la <strong>Maestría en Inteligencia Artificial y Ciencia de Datos</strong>, donde complemento mi experiencia en desarrollo de software con la integración de modelos, agentes y servicios de IA.",
+        "proofLabel": "Métricas",
+        "proof": {
+            "analysis": {
+                "value": "−40 %",
+                "label": "en tiempo de consulta y análisis con PEVI-UAO, plataforma desarrollada con Next.js, PostgreSQL y Docker."
+            },
+            "time": {
+                "value": "5 h → 30 min",
+                "label": "en un proceso operativo diario mediante automatizaciones con Selenium y RPA."
+            },
+            "agents": {
+                "value": "IA aplicada",
+                "label": "Integración de agentes, MCP y guardrails utilizando servicios de Amazon Bedrock."
+            }
+        },
+        "portraitAlt": "Juan Miguel León Gómez, de traje oscuro",
+        "cv": "Descargar CV",
+        "linkedin": "LinkedIn"
+    },
+    "Skills": {
+        "headline": "Tecnologías con las que desarrollo aplicaciones full stack.",
+        "body": "Herramientas que utilizo en desarrollo web, backend, bases de datos, despliegue e integración de inteligencia artificial.",
+        "listLabel": "Tecnologías",
+        "familiesLabel": "Capas",
+        "families": {
+            "frontend": "Frontend",
+            "backend": "Backend",
+            "python": "Python y APIs",
+            "data": "Bases de datos",
+            "deploy": "DevOps y Cloud",
+            "ai": "Inteligencia Artificial"
+        }
+    },
+    "Projects": {
+        "headline": "Proyectos seleccionados",
+        "decisionLabel": "Resultado",
+        "visit": "Visitar sitio",
+        "indexLabel": "Proyectos",
+        "status": {
+            "live": "En línea",
+            "building": "En desarrollo"
+        },
+        "items": {
+            "pevi": {
+                "summary": "Plataforma web para el Centro de Evaluación Energética Industrial de la Universidad Autónoma de Occidente. Permite cargar y validar datos energéticos desde Excel, consultar indicadores y gráficos, generar informes y gestionar asesorías con expertos.",
+                "decision": "El sistema incorpora validación de datos e integración con Vertex AI para apoyar la generación de recomendaciones técnicas. La solución redujo en un 40 % el tiempo de consulta y análisis.",
+                "imageAlt": "Panel principal de la plataforma PEVI UAO"
+            },
+            "dataBridge": {
+                "summary": "Servicio de integración que sincroniza datos de PostgreSQL con Zoho Analytics de forma progresiva y elimina la exportación manual de hojas de cálculo.",
+                "decision": "Las actualizaciones se realizan mediante upserts controlados y consultas SQL predefinidas, sin ejecución de consultas arbitrarias desde el exterior y con renovación automática de tokens OAuth.",
+                "diagramLabel": "Flujo de sincronización entre PostgreSQL y Zoho Analytics"
+            },
+            "westAutomation": {
+                "summary": "Sitio web corporativo para una empresa canadiense de automatización industrial.",
+                "decision": "Desarrollado con Next.js y Tailwind CSS y desplegado en Vercel, con tiempos de carga reducidos y un mantenimiento sencillo del contenido.",
+                "imageAlt": "Portada del sitio de West Automation"
+            },
+            "barbershop": {
+                "summary": "Aplicación web para barberías que centraliza la gestión de reservas, el historial de clientes y el acceso por roles.",
+                "decision": "El control de permisos se aplica en el servidor, de modo que cada rol accede únicamente a la información que le corresponde.",
+                "imageAlt": "Agenda de reservas del sistema para barberías"
+            }
+        }
+    },
+    "Experience": {
+        "headline": "Experiencia profesional",
+        "lede": "Experiencia en desarrollo full stack, automatización de procesos y construcción de soluciones web para entornos académicos y del sector salud.",
+        "present": "Actualidad",
+        "items": {
+            "vallesalud": {
+                "role": "Analista de Sistemas y Desarrollador de Software",
+                "summary": "Desarrollo y mantengo soluciones web internas, incluyendo aplicaciones construidas con Zoho Creator y Zoho Analytics. También implemento automatizaciones con Selenium y RPA para optimizar procesos operativos; uno de estos flujos redujo su ejecución diaria de aproximadamente 5 horas a 30 minutos."
+            },
+            "uao": {
+                "role": "Desarrollador Full Stack · Prácticas profesionales",
+                "summary": "Participé en el desarrollo full stack de PEVI-UAO junto con otro desarrollador. Implementamos carga y análisis de datos energéticos, dashboards, gestión de asesorías e integración con Vertex AI sobre PostgreSQL. La aplicación fue contenerizada con Docker y desplegada en Render y Vercel, reduciendo en un 40 % el tiempo de consulta y análisis. El proyecto también fue presentado en RedCOLSI."
+            },
+            "degree": {
+                "role": "Ingeniería Informática"
+            },
+            "sena": {
+                "role": "Técnico en Programación de Software"
+            },
+            "certifications": {
+                "role": "Formación adicional y certificaciones"
+            },
+            "master": {
+                "role": "Maestría en Inteligencia Artificial y Ciencia de Datos"
+            }
+        }
+    },
+    "Contact": {
+        "headline": "Disponible para nuevos proyectos y oportunidades.",
+        "body": "Estoy abierto a oportunidades como desarrollador full stack y a proyectos de desarrollo web, automatización e integración de inteligencia artificial. Disponible en Cali para trabajo presencial, híbrido o remoto.",
+        "copy": "Copiar correo",
+        "copied": "Correo copiado",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "cv": "CV",
+        "formOpen": "Enviar un mensaje",
+        "formClose": "Cerrar formulario"
+    },
+    "ContactForm": {
+        "title": "Enviar un mensaje",
+        "typeLegend": "Tipo de mensaje",
+        "types": {
+            "inquiry": "Consulta",
+            "service": "Proyecto"
+        },
+        "name": "Nombre",
+        "email": "Correo",
+        "subject": "Asunto",
+        "message": "Mensaje",
+        "send": "Enviar mensaje",
+        "sending": "Enviando…",
+        "success": "Mensaje enviado. Te respondo pronto.",
+        "errors": {
+            "name": "Escribe tu nombre.",
+            "email": "Escribe tu correo.",
+            "emailInvalid": "Ese correo no parece válido. Revisa el formato.",
+            "subject": "Ponle un asunto al mensaje.",
+            "message": "Escribe el mensaje.",
+            "failed": "No se pudo enviar ahora. Inténtalo de nuevo o escríbeme directo al correo."
+        }
+    },
+    "Footer": {
+        "closing": "Gracias por visitar mi portafolio.",
+        "backToTop": "Volver arriba",
+        "rights": "© {year} Juan Miguel León Gómez · Cali, Colombia"
+    }
+}

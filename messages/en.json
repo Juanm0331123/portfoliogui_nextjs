@@ -1,0 +1,173 @@
+{
+    "Metadata": {
+        "title": "ImMiguel Dev — Full-stack engineering",
+        "description": "Juan Miguel León Gómez, informatics engineer and full-stack developer in Cali, Colombia. Web applications built with React, Next.js, Node.js, Python, PostgreSQL, Docker and AI."
+    },
+    "Loader": {
+        "status": "Loading"
+    },
+    "Navbar": {
+        "home": "Back to the top",
+        "primary": "Sections",
+        "about": "About",
+        "skills": "Stack",
+        "projects": "Work",
+        "experience": "Experience",
+        "contact": "Contact",
+        "cta": "Contact me",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu"
+    },
+    "LocaleSwitcher": {
+        "label": "Language",
+        "es": "ES",
+        "en": "EN",
+        "switchTo": "Switch to {language}",
+        "names": {
+            "es": "Spanish",
+            "en": "English"
+        }
+    },
+    "Hero": {
+        "badge": "Informatics Engineer · Full-Stack Developer",
+        "subtitle": "I build complete web applications, from the interface and API to the database, automation, deployment and AI integration.",
+        "ctaWork": "See the work",
+        "ctaCv": "Download CV",
+        "scroll": "Scroll"
+    },
+    "About": {
+        "headline": "Informatics engineer focused on full-stack development.",
+        "layers": "I'm an informatics engineer from Universidad Autónoma de Occidente and a full-stack developer. I work with React, Next.js and TypeScript on the frontend; Node.js, NestJS, Express and Python on the backend; and PostgreSQL, MongoDB and MySQL for data persistence. I also use Docker and cloud services to ship applications to production.",
+        "effect": "I'm currently pursuing a <strong>Master's in Artificial Intelligence and Data Science</strong>, where I build on my software development experience with the integration of models, agents and AI services.",
+        "proofLabel": "Metrics",
+        "proof": {
+            "analysis": {
+                "value": "−40%",
+                "label": "in query and analysis time on PEVI-UAO, a platform built with Next.js, PostgreSQL and Docker."
+            },
+            "time": {
+                "value": "5 h → 30 min",
+                "label": "on a daily operational process, through automations with Selenium and RPA."
+            },
+            "agents": {
+                "value": "Applied AI",
+                "label": "Integration of agents, MCP and guardrails using Amazon Bedrock services."
+            }
+        },
+        "portraitAlt": "Juan Miguel León Gómez in a dark suit",
+        "cv": "Download CV",
+        "linkedin": "LinkedIn"
+    },
+    "Skills": {
+        "headline": "The technologies I use to build full-stack applications.",
+        "body": "Tools I use across web development, backend, databases, deployment and AI integration.",
+        "listLabel": "Technologies",
+        "familiesLabel": "Layers",
+        "families": {
+            "frontend": "Frontend",
+            "backend": "Backend",
+            "python": "Python and APIs",
+            "data": "Databases",
+            "deploy": "DevOps and Cloud",
+            "ai": "Artificial Intelligence"
+        }
+    },
+    "Projects": {
+        "headline": "Selected projects",
+        "decisionLabel": "Outcome",
+        "visit": "Visit site",
+        "indexLabel": "Projects",
+        "status": {
+            "live": "Live",
+            "building": "In development"
+        },
+        "items": {
+            "pevi": {
+                "summary": "Web platform for the Industrial Energy Assessment Center at Universidad Autónoma de Occidente. Users upload and validate energy data from Excel, review indicators and charts, generate reports and manage sessions with experts.",
+                "decision": "The system adds data validation and a Vertex AI integration that supports technical recommendations. The solution cut query and analysis time by 40%.",
+                "imageAlt": "Main dashboard of the PEVI UAO platform"
+            },
+            "dataBridge": {
+                "summary": "Integration service that syncs PostgreSQL data to Zoho Analytics progressively, removing manual spreadsheet exports.",
+                "decision": "Updates run through controlled upserts and predefined SQL queries, with no arbitrary queries from outside and automatic OAuth token renewal.",
+                "diagramLabel": "Sync flow between PostgreSQL and Zoho Analytics"
+            },
+            "westAutomation": {
+                "summary": "Corporate website for a Canadian industrial automation company.",
+                "decision": "Built with Next.js and Tailwind CSS and deployed on Vercel, with fast load times and straightforward content maintenance.",
+                "imageAlt": "Home page of the West Automation site"
+            },
+            "barbershop": {
+                "summary": "Web application for barbershops that centralizes bookings, client history and role-based access.",
+                "decision": "Permissions are enforced on the server, so each role only accesses the information it needs.",
+                "imageAlt": "Booking calendar of the barbershop system"
+            }
+        }
+    },
+    "Experience": {
+        "headline": "Professional experience",
+        "lede": "Experience in full-stack development, process automation and web solutions for academic and healthcare environments.",
+        "present": "Present",
+        "items": {
+            "vallesalud": {
+                "role": "Systems Analyst and Software Developer",
+                "summary": "I develop and maintain internal web solutions, including applications built on Zoho Creator and Zoho Analytics. I also implement Selenium and RPA automations to streamline operational processes; one of these workflows cut its daily run time from about 5 hours to 30 minutes."
+            },
+            "uao": {
+                "role": "Full-Stack Developer · Professional internship",
+                "summary": "I worked on the full-stack development of PEVI-UAO alongside another developer. We built energy data upload and analysis, dashboards, advisory session management and a Vertex AI integration on PostgreSQL. The application was containerized with Docker and deployed on Render and Vercel, cutting query and analysis time by 40%. The project was also presented at RedCOLSI."
+            },
+            "degree": {
+                "role": "Informatics Engineering"
+            },
+            "sena": {
+                "role": "Software Programming Technician"
+            },
+            "certifications": {
+                "role": "Additional training and certifications"
+            },
+            "master": {
+                "role": "Master's in Artificial Intelligence and Data Science"
+            }
+        }
+    },
+    "Contact": {
+        "headline": "Available for new projects and opportunities.",
+        "body": "I'm open to full-stack developer roles and to projects in web development, automation and AI integration. Based in Cali and available for on-site, hybrid or remote work.",
+        "copy": "Copy email",
+        "copied": "Email copied",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "cv": "CV",
+        "formOpen": "Send a message",
+        "formClose": "Close form"
+    },
+    "ContactForm": {
+        "title": "Send a message",
+        "typeLegend": "Message type",
+        "types": {
+            "inquiry": "Question",
+            "service": "Project"
+        },
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message",
+        "send": "Send message",
+        "sending": "Sending…",
+        "success": "Message sent. I'll get back to you soon.",
+        "errors": {
+            "name": "Add your name.",
+            "email": "Add your email.",
+            "emailInvalid": "That email doesn't look right. Check the format.",
+            "subject": "Give the message a subject.",
+            "message": "Write your message.",
+            "failed": "It didn't go through. Try again, or email me directly."
+        }
+    },
+    "Footer": {
+        "closing": "Thanks for visiting my portfolio.",
+        "backToTop": "Back to top",
+        "rights": "© {year} Juan Miguel León Gómez · Cali, Colombia"
+    }
+}
