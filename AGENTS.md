@@ -11,26 +11,33 @@ El objetivo principal del proyecto es mantener una experiencia visual de alto ni
 - Framework: Next.js 15 con App Router.
 - Lenguaje: TypeScript.
 - UI: React 19 y Tailwind CSS 4.
-- Animacion: Framer Motion.
-- 3D: Three.js, React Three Fiber, Drei y maath.
+- Animacion: GSAP + ScrollTrigger (todo con `scrub`, via `scrubbed()` en `src/shared/animation/scroll.ts`) y Lenis sincronizado con el ticker de GSAP.
+- 3D: Three.js puro (sin React Three Fiber) y `postprocessing` (bloom, grano, vineta).
+- i18n: next-intl. ES en `/`, EN en `/en`. Todo el copy en `messages/*.json`.
 - Iconos: lucide-react y @heroicons/react.
 - Backend de contacto: API route de Next.js y Nodemailer.
 
 ## Comandos Del Proyecto
 
 - `npm run dev`: inicia el servidor local con Turbopack.
-- `npm run build`: genera el build de produccion.
+- `npm run build`: build de produccion con `--turbopack` explicito (sin el flag, Next 15.5 falla en Node 24 con el bug de WasmHash). No correr `build` con un `dev` activo: comparten `.next` y el manifiesto de rutas queda corrupto.
 - `npm run start`: inicia el servidor de produccion.
 - `npm run lint`: ejecuta las validaciones de ESLint.
 
-## Estructura Relevante
+## Estructura Relevante (Feature-Sliced Design)
 
-- `src/app`: rutas, layout global, estilos globales y API routes.
-- `src/app/api/contact/route.ts`: endpoint de contacto.
-- `src/components/main`: secciones principales del portafolio.
-- `src/components/sub`: componentes auxiliares reutilizables.
-- `src/utils`: utilidades compartidas.
+- `src/app`: solo rutas Next. `[locale]/layout.tsx` es el layout raiz; `api/contact/route.ts` queda fuera de `[locale]`.
+- `src/app-shell`: composicion raiz (canvas WebGL, loader, navbar, features headless).
+- `src/widgets/*`: secciones (`ui/`, `model/`, `index.ts`).
+- `src/features/*`: smooth-scroll, swarm-choreography, scroll-reveal, scroll-progress, locale-switcher, contact-form.
+- `src/entities/*`: datos de dominio (proyectos, experiencia, stack).
+- `src/shared/three/swarm`: el motor de particulas (`engine.ts`, `shaders.ts`, `formations.ts`, `store.ts`).
+- `src/i18n`, `src/middleware.ts`, `messages/`: internacionalizacion.
 - `public`: assets publicos.
+
+## Regla De Transiciones Reversibles
+
+Todo lo que se mueve con el scroll es una funcion pura de la posicion: sin `once`, sin `toggleActions`, sin callbacks de entrada/salida que escriban estado. El enjambre se controla con un unico escalar (`uProgress = 1 + suma de bandas scrubbed`); toda aleatoriedad esta sembrada y precalculada. Nada de fondo opaco en `body` ni en secciones: taparia el canvas WebGL.
 
 ## Reglas Generales De Trabajo
 
