@@ -9,6 +9,7 @@ import { registerScrollTrigger, scrubbed } from '@/shared/animation'
 import { useIsomorphicLayoutEffect, usePrefersReducedMotion } from '@/shared/hooks'
 import { cardState, deckDuration, HOLD, type ProjectSlide } from '../model'
 import { DataBridgeDiagram } from './DataBridgeDiagram'
+import styles from './ProjectsDeck.module.css'
 
 const COPY_SHOWN = { opacity: 1, y: 0, filter: 'blur(0px)' }
 const COPY_HIDDEN = { opacity: 0, y: 28, filter: 'blur(8px)' }
@@ -115,10 +116,12 @@ export function ProjectsDeck({ slides, indexLabel }: ProjectsDeckProps) {
                         key={slide.id}
                         data-card
                         aria-labelledby={`project-${slide.id}`}
-                        className="col-start-1 row-start-1 w-full max-w-[92vw] will-change-transform md:w-[min(90vw,calc((100svh-16.5rem)*1.72),80rem)] motion-reduce:mx-auto motion-reduce:max-w-5xl"
+                        className={`${styles.card} col-start-1 row-start-1 w-full max-w-[92vw] will-change-transform motion-reduce:mx-auto motion-reduce:max-w-5xl`}
                     >
-                        <div className="relative overflow-hidden rounded-[18px] border border-ink/10 bg-[#07070a] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)] md:aspect-[1.72]">
-                            <div className="relative aspect-[2/1] overflow-hidden sm:aspect-[16/10] md:absolute md:inset-0 md:aspect-auto">
+                        <div
+                            className={`${styles.frame} relative overflow-hidden rounded-[18px] border border-ink/10 bg-[#07070a] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]`}
+                        >
+                            <div className="relative aspect-[2/1] overflow-hidden md:absolute md:inset-0 md:aspect-auto">
                                 <div data-card-image className="h-full w-full will-change-transform">
                                     {slide.image ? (
                                         <Image
@@ -149,24 +152,24 @@ export function ProjectsDeck({ slides, indexLabel }: ProjectsDeckProps) {
 
                             <div
                                 data-card-copy
-                                className="relative grid gap-4 p-5 sm:gap-5 sm:p-7 md:absolute md:inset-x-0 md:bottom-0 md:grid-cols-12 md:items-end md:gap-8 md:p-10 lg:p-12"
+                                className={`${styles.copy} relative grid gap-4 p-5 sm:grid-cols-12 sm:items-start sm:gap-5 md:absolute md:inset-x-0 md:bottom-0 md:items-end`}
                             >
-                                <div className="md:col-span-7">
+                                <div className="sm:col-span-7">
                                     <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-accent">
                                         {slide.index} · {slide.meta}
                                     </p>
                                     <h3
                                         id={`project-${slide.id}`}
-                                        className="mt-2 font-display text-[clamp(1.9rem,5vw,5.2rem)] font-light leading-[0.95] tracking-[-0.035em] text-ink sm:mt-3"
+                                        className={`${styles.title} mt-2 font-display font-light leading-[0.95] tracking-[-0.035em] text-ink sm:mt-3`}
                                     >
                                         {slide.title}
                                     </h3>
-                                    <p className="mt-3 line-clamp-3 max-w-[46ch] text-sm leading-relaxed text-ink-soft sm:mt-4 sm:line-clamp-none md:text-[0.9375rem]">{slide.summary}</p>
+                                    <p className="mt-3 line-clamp-3 max-w-[46ch] text-sm leading-relaxed text-ink-soft sm:mt-4 md:line-clamp-none md:text-[0.9375rem]">{slide.summary}</p>
                                 </div>
-                                <div className="md:col-span-5 md:border-l md:border-ink/10 md:pl-8">
+                                <div className="sm:col-span-5 sm:border-l sm:border-ink/10 sm:pl-5 md:pl-8">
                                     <p className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-ink-muted">{slide.decisionLabel}</p>
-                                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink sm:line-clamp-none md:text-[0.9375rem]">{slide.decision}</p>
-                                    <ul className="mt-4 hidden flex-wrap gap-1.5 sm:flex">
+                                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink md:line-clamp-none md:text-[0.9375rem]">{slide.decision}</p>
+                                    <ul className="mt-4 hidden flex-wrap gap-1.5 md:flex">
                                         {slide.stack.map((tech) => (
                                             <li
                                                 key={tech}
